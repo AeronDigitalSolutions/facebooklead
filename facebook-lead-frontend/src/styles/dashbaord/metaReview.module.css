@@ -1,0 +1,71 @@
+.wrapper {
+  padding: 40px;
+  background: #f8f9fb;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+.card {
+  margin-top: 30px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.notice {
+  margin-top: 20px;
+  background: #eef2ff;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back {
+  background: #f1f5f9;
+  padding: 14px 22px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm {
+  background: #16a34a;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm:hover {
+  opacity: 0.9;
+}

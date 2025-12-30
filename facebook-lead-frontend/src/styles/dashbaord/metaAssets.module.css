@@ -1,0 +1,68 @@
+.wrapper {
+  padding: 40px;
+  background: #f8f9fb;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+.section {
+  margin-top: 30px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.section h3 {
+  margin-bottom: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #f1f5f9;
+}
+
+.staticBox {
+  padding: 14px;
+  border-radius: 10px;
+  background: #eef2ff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.actions button {
+  background: #1877f2;
+  color: white;
+  padding: 14px 26px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
