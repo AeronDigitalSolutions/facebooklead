@@ -1,7 +1,8 @@
-/* ROOT */
+/* =========================
+   ROOT SECTION (BACKGROUND)
+========================= */
 .hero {
   width: 100%;
-  padding: 120px 0 100px;
   background: radial-gradient(
       circle at top left,
       #eef2ff 0%,
@@ -12,7 +13,16 @@
   overflow: hidden;
 }
 
-/* CONTAINER */
+/* =========================
+   VERTICAL SPACING WRAPPER
+========================= */
+.heroContainer {
+  padding: 120px 0 100px;
+}
+
+/* =========================
+   CONTENT CONTAINER
+========================= */
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -23,14 +33,18 @@
   align-items: center;
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
 .content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* BADGE */
+/* =========================
+   BADGE
+========================= */
 .badge {
   display: inline-block;
   background: rgba(255, 255, 255, 0.15);
@@ -41,7 +55,9 @@
   width: fit-content;
 }
 
-/* HEADING */
+/* =========================
+   HEADING
+========================= */
 .content h1 {
   font-size: 52px;
   line-height: 1.1;
@@ -53,7 +69,9 @@
   color: #fde68a;
 }
 
-/* DESCRIPTION */
+/* =========================
+   DESCRIPTION
+========================= */
 .content p {
   font-size: 18px;
   line-height: 1.6;
@@ -61,7 +79,9 @@
   max-width: 520px;
 }
 
-/* ACTIONS */
+/* =========================
+   ACTION BUTTONS
+========================= */
 .actions {
   display: flex;
   gap: 16px;
@@ -98,7 +118,9 @@
   cursor: pointer;
 }
 
-/* STATS */
+/* =========================
+   STATS
+========================= */
 .stats {
   display: flex;
   gap: 40px;
@@ -120,7 +142,9 @@
   color: #c7d2fe;
 }
 
-/* VISUAL */
+/* =========================
+   VISUAL
+========================= */
 .visual {
   display: flex;
   justify-content: center;
@@ -164,6 +188,10 @@
 }
 
 @media (max-width: 640px) {
+  .heroContainer {
+    padding: 90px 0 80px;
+  }
+
   .content h1 {
     font-size: 38px;
   }

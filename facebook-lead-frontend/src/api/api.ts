@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from "@/lib/axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:5000/api",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+export const getLeads = (params?: any) =>
+  axios.get(`/leads`, { params });
 
-export default API;
+export const getLeadById = (id: string) =>
+  axios.get(`/leads/${id}`);
+
+export const updateLead = (id: string, data: any) =>
+  axios.patch(`/leads/${id}`, data);
