@@ -1,0 +1,47 @@
+/* =========================
+   HARD RESET
+========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* =========================
+   FIXED HEADER OFFSET
+========================= */
+
+/*
+  This is THE KEY FIX.
+  Header height = 72px
+*/
+main {
+  padding-top: 72px;
+}
+
+/* =========================
+   SECTION NORMALIZATION
+========================= */
+
+section,
+footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+

@@ -1,6 +1,8 @@
 .more_slider_container{
     padding: 50px 70px;
     text-align: center;
+      background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
+
 }
 .integrations {
     color:   #a855f7;

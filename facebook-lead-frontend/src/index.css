@@ -39,6 +39,8 @@ body {
   width: 100%;
   /* background-color: #7c3aed;; */
     background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
+      background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
+
 
   overflow-x: hidden;
 }

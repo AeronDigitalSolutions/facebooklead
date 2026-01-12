@@ -2,9 +2,9 @@ import styles from "../../../styles/dashbaord/metaIntro.module.css";
 
 export default function MetaIntro() {
   const handleMetaLogin = () => {
-    // 🔥 OAuth redirect will be wired later
-    window.location.href = "/dashboard/integrations/meta/processing";
-  };
+  window.location.href = "http://localhost:5000/api/auth/meta/login";
+};
+
 
   return (
     <div className={styles.wrapper}>

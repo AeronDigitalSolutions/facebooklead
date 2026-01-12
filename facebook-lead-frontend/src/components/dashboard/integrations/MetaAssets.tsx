@@ -1,43 +1,115 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../../styles/dashbaord/metaAssets.module.css";
 
-const PAGES = [
-  { id: "p1", name: "LeadFlow Clinic" },
-  { id: "p2", name: "LeadFlow Hair Studio" },
-];
-
-const AD_ACCOUNTS = [
-  { id: "a1", name: "LeadFlow Ads – 01" },
-  { id: "a2", name: "LeadFlow Ads – 02" },
-];
+interface MetaItem {
+  id: string;
+  name: string;
+}
 
 export default function MetaAssets() {
   const navigate = useNavigate();
 
-  const [page, setPage] = useState<string | null>(null);
-  const [adAccount, setAdAccount] = useState<string | null>(null);
+  const [pages, setPages] = useState<MetaItem[]>([]);
+  const [adAccounts, setAdAccounts] = useState<MetaItem[]>([]);
 
-  const isValid = page && adAccount;
+  const [selectedPages, setSelectedPages] = useState<MetaItem[]>([]);
+  const [selectedAds, setSelectedAds] = useState<MetaItem[]>([]);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const isValid = selectedPages.length > 0 && selectedAds.length > 0;
+
+  useEffect(() => {
+    const fetchAssets = async () => {
+      try {
+        const [pagesRes, adsRes] = await Promise.all([
+          fetch("http://localhost:5000/api/meta/pages"),
+          fetch("http://localhost:5000/api/meta/adaccounts"),
+        ]);
+
+        if (!pagesRes.ok || !adsRes.ok) {
+          throw new Error("Failed to fetch Meta assets");
+        }
+
+        const pagesData = await pagesRes.json();
+        const adsData = await adsRes.json();
+
+        setPages(pagesData);
+        setAdAccounts(adsData);
+
+        // ✅ REQUIRED: store ALL ad accounts for Campaign dropdown
+        localStorage.setItem(
+          "meta_ad_accounts",
+          JSON.stringify(adsData)
+        );
+      } catch (err) {
+        console.error(err);
+        setError("Unable to load Meta assets. Please reconnect Meta.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAssets();
+  }, []);
+
+  const toggleItem = (
+    item: MetaItem,
+    list: MetaItem[],
+    setList: React.Dispatch<React.SetStateAction<MetaItem[]>>
+  ) => {
+    setList(
+      list.some((i) => i.id === item.id)
+        ? list.filter((i) => i.id !== item.id)
+        : [...list, item]
+    );
+  };
+
+  const handleContinue = () => {
+    // ✅ keep existing onboarding flow
+    sessionStorage.setItem(
+      "metaSelection",
+      JSON.stringify({
+        pages: selectedPages,
+        adAccounts: selectedAds,
+      })
+    );
+
+    // 🔥 REQUIRED: store ONE selected ad account for campaigns
+    if (selectedAds.length > 0) {
+      localStorage.setItem(
+        "selected_ad_account",
+        JSON.stringify(selectedAds[0]) // first selected
+      );
+    }
+
+    navigate("/dashboard/integrations/meta/review");
+  };
+
+  if (loading)
+    return <div className={styles.wrapper}>Loading Meta assets...</div>;
+
+  if (error)
+    return <div className={styles.wrapper}>{error}</div>;
 
   return (
     <div className={styles.wrapper}>
       <h1>Select Meta Assets</h1>
       <p className={styles.subtitle}>
-        Choose which business assets you want to connect with LeadFlow.
+        Select one or more business assets to connect.
       </p>
 
-      {/* FACEBOOK PAGE */}
+      {/* FACEBOOK PAGES */}
       <section className={styles.section}>
-        <h3>Facebook Page</h3>
-
-        {PAGES.map((p) => (
+        <h3>Facebook Pages</h3>
+        {pages.map((p) => (
           <label key={p.id} className={styles.option}>
             <input
-              type="radio"
-              name="page"
-              checked={page === p.id}
-              onChange={() => setPage(p.id)}
+              type="checkbox"
+              checked={selectedPages.some((sp) => sp.id === p.id)}
+              onChange={() => toggleItem(p, selectedPages, setSelectedPages)}
             />
             <span>{p.name}</span>
           </label>
@@ -46,37 +118,29 @@ export default function MetaAssets() {
 
       {/* INSTAGRAM */}
       <section className={styles.section}>
-        <h3>Instagram Business Account</h3>
-
+        <h3>Instagram</h3>
         <div className={styles.staticBox}>
-          <strong>@leadflow_clinic</strong>
-          <span>Connected via selected page</span>
+          Instagram Business accounts are linked automatically via Pages.
         </div>
       </section>
 
-      {/* AD ACCOUNT */}
+      {/* AD ACCOUNTS */}
       <section className={styles.section}>
-        <h3>Ad Account</h3>
-
-        {AD_ACCOUNTS.map((a) => (
+        <h3>Ad Accounts</h3>
+        {adAccounts.map((a) => (
           <label key={a.id} className={styles.option}>
             <input
-              type="radio"
-              name="ad"
-              checked={adAccount === a.id}
-              onChange={() => setAdAccount(a.id)}
+              type="checkbox"
+              checked={selectedAds.some((sa) => sa.id === a.id)}
+              onChange={() => toggleItem(a, selectedAds, setSelectedAds)}
             />
-            <span>{a.name}</span>
+            <span>{a.name || a.id}</span>
           </label>
         ))}
       </section>
 
-      {/* ACTION */}
       <div className={styles.actions}>
-        <button
-          disabled={!isValid}
-          onClick={() => navigate("/dashboard/integrations/meta/review")}
-        >
+        <button type="button" disabled={!isValid} onClick={handleContinue}>
           Continue
         </button>
       </div>

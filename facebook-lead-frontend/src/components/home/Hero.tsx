@@ -23,7 +23,7 @@ const Hero = () => {
       });
     }, []);
   return (
-    <div className="slider-container">
+    <div className="slider-container" style={{background:'#7b2cff'}}>
       <Slider {...settings}>
         <section className="hero">
       <div className="hero-container">

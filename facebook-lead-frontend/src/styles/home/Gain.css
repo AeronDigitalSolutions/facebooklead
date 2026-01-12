@@ -1,9 +1,9 @@
-/* ===============================
-   BASE SECTION
-=============================== */
+
 .ai {
   color: #fff;
   padding: 120px 80px;
+    background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
+
   font-family: "Inter", sans-serif;
 }
 

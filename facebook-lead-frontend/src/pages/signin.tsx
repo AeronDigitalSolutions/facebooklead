@@ -2,9 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/signin.module.css";
-
 const API_BASE =
-  import.meta.env.VITE_API_BASE || "http://localhost:5000";
+  import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 
 export default function SigninPage() {
   const navigate = useNavigate();

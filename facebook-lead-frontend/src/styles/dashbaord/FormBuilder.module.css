@@ -1,0 +1,254 @@
+.wrapper {
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: Inter, sans-serif;
+}
+
+/* TOP BAR */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.topBar input {
+  display: block;
+  margin-bottom: 8px;
+  padding: 10px;
+  width: 280px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.topBar button {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+}
+
+/* BUILDER */
+.builder {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  height: calc(100vh - 80px);
+}
+
+/* PALETTE */
+.palette {
+  background: white;
+  padding: 20px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.palette button {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #eef2ff;
+  border: none;
+  cursor: pointer;
+}
+
+/* CANVAS */
+.canvas {
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 120px;
+  color: #6b7280;
+}
+
+/* FIELD */
+.field {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.active {
+  border-color: #4f46e5;
+}
+
+.field label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+/* ACTIONS */
+.actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.actions button {
+  background: #e5e7eb;
+  border-radius: 4px;
+  border: none;
+  padding: 4px 6px;
+}
+
+/* SETTINGS */
+.settings {
+  background: white;
+  padding: 20px;
+  border-left: 1px solid #e5e7eb;
+}
+
+.settings input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.checkbox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.wrapper {
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: Inter, sans-serif;
+}
+
+/* TOP BAR */
+.topBar {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.topBar input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.topBar button {
+  background: #4f46e5;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+}
+
+/* BUILDER */
+.builder {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  height: 520px;
+}
+
+/* PALETTE */
+.palette {
+  background: white;
+  padding: 20px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.palette button {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #eef2ff;
+  border: none;
+}
+
+/* CANVAS */
+.canvas {
+  padding: 24px;
+}
+
+.field {
+  background: white;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.active {
+  border-color: #4f46e5;
+}
+
+/* SETTINGS */
+.settings {
+  background: white;
+  padding: 20px;
+  border-left: 1px solid #e5e7eb;
+}
+
+/* OUTPUT */
+.output {
+  padding: 40px 24px;
+}
+
+.finalForm {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.finalField {
+  margin-bottom: 16px;
+}
+
+.finalField input,
+.finalField textarea,
+.finalField select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.submitBtn {
+  background: #4f46e5;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+}
+
+.checkbox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

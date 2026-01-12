@@ -13,7 +13,7 @@ export default function Navbar() {
         <img src={logo} alt="logo" />
       </div>
 
-      {/* Desktop Menu */}
+      
       <nav className="nav-menu desktop">
         <div className="nav-item">
           Home <span className="plus">×</span>
@@ -79,7 +79,7 @@ export default function Navbar() {
         <a href="#">Contact</a>
 
         <div className="mobile-actions">
-          <button className="login-btn">Login</button>
+          <button  className="login-btn">Login</button>
           <button className="join-btn">Join now</button>
         </div>
       </div>

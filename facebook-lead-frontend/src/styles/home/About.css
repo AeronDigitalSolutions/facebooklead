@@ -1,9 +1,9 @@
-/* ===============================
-   BASE
-=============================== */
+
 .about {
   padding: 120px 80px;
   color: #fff;
+    background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
+
 }
 
 .about-container {

@@ -2,6 +2,8 @@
   margin: 0;
   padding: 50px 20px;
   /* background: #0b0624; */
+    background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
