@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 // import Signin from "./pages/signin";
+import './index.css'
 import Signup from "./pages/signup";
 import Home from "./pages/home/Home";
 import Dashboard from "./pages/Dashboard";
@@ -14,9 +15,28 @@ import MetaSuccess from "./components/dashboard/integrations/MetaSuccess";
 import MetaSettings from "./components/dashboard/settings/MetaSettings";
 import MetaError from "./components/dashboard/integrations/MetaError";
 import MetaHelp from "./components/dashboard/help/MetaHelp";
+// import { useEffect } from "react";
 
 export default function App() {
+  //  useEffect(() => {
+  //    const ring = document.querySelector(".cursor-ring");
+  //    const dot = document.querySelector(".cursor-dot");
+ 
+  //    const move = (e) => {
+  //      const x = e.clientX;
+  //      const y = e.clientY;
+ 
+  //      dot.style.transform = `translate(${x}px, ${y}px)`;
+  //      ring.style.transform = `translate(${x}px, ${y}px)`;
+  //    };
+ 
+  //    window.addEventListener("mousemove", move);
+  //    return () => window.removeEventListener("mousemove", move);
+  //  }, []);
   return (
+    <>
+    <div className="cursor-dot"></div>
+      <div className="cursor-ring"></div>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/signin" element={<Dashboard />} />
@@ -70,6 +90,6 @@ export default function App() {
 
 
       </Routes>
-
+</>
   );
 }

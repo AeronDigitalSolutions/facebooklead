@@ -10,28 +10,32 @@ export default function Footer() {
 
           {/* Brand */}
           <div className={styles.brand}>
-            <h3>LeadFlow</h3>
+            <h3>NewsPaper</h3>
             <p>
               All-in-one Facebook Lead Management platform designed to
               help teams respond faster and convert more.
             </p>
+            {/* <p className="input_and_button">
+              <input placeholder="ENTER YOUR EMAIL"/>
+              <button>Submit</button>
+            </p> */}
           </div>
 
           {/* Links */}
           <div className={styles.links}>
             <div>
               <h4>Product</h4>
-              <a href="#features">Features</a>
-              <a href="#how">How it Works</a>
-              <a href="#pricing">Pricing</a>
+              <a href="#features">Ai Power</a>
+              <a href="#how">Blog Post Genreation</a>
+              <a href="#pricing">Social media Content</a>
               <a href="/login">Login</a>
             </div>
 
             <div>
-              <h4>Company</h4>
-              <a href="/about">About</a>
-              <a href="/contact">Contact</a>
-              <a href="/careers">Careers</a>
+              <h4>Resources</h4>
+              <a href="/about">Blog</a>
+              <a href="/contact">FAQ</a>
+              <a href="/careers">Help Center</a>
             </div>
 
             <div>
