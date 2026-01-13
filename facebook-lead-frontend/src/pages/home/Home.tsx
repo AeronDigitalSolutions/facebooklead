@@ -13,12 +13,12 @@ import Pricing from '../../components/home/Pricing';
 import Faq from "../../components/home/Faq";
 import MoreSlider from "../../components/home/MoreSlider";
 import BlogSection from "../../components/home/BlogSection";
-import Cta from "../../components/home/Cta";
+import Cta from "@/components/home/Cta";
+// import Cta from "../../components/home/Cta";
 export default function Home() {
   return (
     <>
     <Navbar/>
-      {/* <Header /> */}
       <Hero />
       <HowItWorks />
      <About/>
@@ -30,6 +30,7 @@ export default function Home() {
     <Faq/>
     <MoreSlider/>
     <BlogSection/>
+    {/* <Cta/> */}
     <Cta/>
       <Footer />
     </>

@@ -1,4 +1,3 @@
-// import React from 'react'
 import '../../styles/home/Cta.css'
 import cta from '../../assets/home/cta.png'
 const Cta = () => {
