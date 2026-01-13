@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../styles/home/Navbar.css";
 import logo from "../../assets/home/logo (1).svg";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
-
+import { Link } from "react-router-dom";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
@@ -15,7 +15,7 @@ export default function Navbar() {
 
       
       <nav className="nav-menu desktop">
-        <div className="nav-item">
+        <Link to='/' className="nav-item">
           Home <span className="plus">×</span>
           <div className="dropdown">
             <a href="#">HomePage 01</a>
@@ -33,9 +33,9 @@ export default function Navbar() {
               </div>
             </div> */}
           </div>
-        </div>
+        </Link>
 
-        <a className="nav-item" href="#">About</a>
+        <Link to='/aboutpage' className="nav-item" >About</Link>
 
         <div className="nav-item">
           Pages <span className="plus">+</span>
@@ -54,11 +54,11 @@ export default function Navbar() {
           </div>
         </div>
 
-        <a className="nav-item" href="#">Contact</a>
+        <Link to='/contact' className="nav-item" >Contact</Link>
       </nav>
 
       <div className="nav-actions desktop">
-        <button className="login-btn">Login</button>
+        <Link to='/signin' className="login-btn">Login</Link>
         <button className="join-btn">Join now</button>
       </div>
 

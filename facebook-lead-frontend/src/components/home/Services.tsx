@@ -28,7 +28,7 @@ const Services = () => {
 
       <div className="services-grid">
 
-        <div className="service-card" data-aos="fade-up"
+        <div className="service-card" data-aos="fade-left"
      data-aos-anchor-placement="center-bottom">
           <div className="icon"><PiSpeakerSimpleHighBold /></div>
           <h3>Digital marketers</h3>
@@ -61,7 +61,7 @@ const Services = () => {
 
 
        
-        <div className="service-card"data-aos="fade-left"
+        <div className="service-card"data-aos="fade-right"
      data-aos-anchor-placement="center-bottom">
           <div className="icon"><FaRegLightbulb /></div>
           <h3>Founders</h3>

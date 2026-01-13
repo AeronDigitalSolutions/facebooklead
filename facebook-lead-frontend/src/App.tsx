@@ -37,12 +37,16 @@ import GoogleAccounts from "./components/dashboard/google/GoogleAccounts";
 import GoogleCampaigns from "./components/dashboard/google/GoogleCampaigns";
 import GoogleLeads from "./components/dashboard/google/GoogleLeads";
 import GoogleSuccess from "./pages/google/GoogleSuccess";
+import AboutPage from "./pages/AboutPages/AboutPage";
+import Contact from "./components/Contact/Contact";
 
 export default function App() {
   return (
     <Routes>
       {/* 🌐 PUBLIC ROUTES */}
       <Route path="/" element={<Home />} />
+      <Route path="/aboutpage" element={<AboutPage/>}/>
+      <Route path="/contact" element={<Contact/>}/>
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
 

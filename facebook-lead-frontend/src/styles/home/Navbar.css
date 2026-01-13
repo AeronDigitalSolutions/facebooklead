@@ -2,7 +2,6 @@
   position: sticky;
   /* width: 100%; */
     background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
-
   top: 0;
   z-index: 100;
   display: flex;
@@ -109,6 +108,8 @@
   font-size: 19px;
   cursor: pointer;
   color: #fff;
+  text-decoration: none;
+  align-items: center;
   z-index: 1;
 }
 

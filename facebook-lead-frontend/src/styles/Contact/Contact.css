@@ -1,0 +1,81 @@
+.contact-hero {
+  position: relative;
+  min-height: 320px;
+  background: radial-gradient(circle at top, #3b1f5c, #14071f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+/* .breadcrumb Link {
+  color: #e5e5e5;
+  text-decoration: overline;
+} */
+.link{
+  color: #fff;
+  text-decoration: none;
+}
+.breadcrumb .active {
+  color: #a855f7;
+}
+
+.arrow {
+  opacity: 0.6;
+}
+
+.blob {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #a855f7, #7c2ae8);
+  filter: blur(2px);
+  opacity: 0.85;
+  border-radius: 50%;
+}
+
+
+.blob-left {
+  left: 12%;
+  top: 40%;
+  border-radius: 60% 40% 55% 45%;
+  transform: rotate(-20deg);
+}
+
+.blob-right {
+  right: 18%;
+  top: 28%;
+  width: 45px;
+  height: 45px;
+  border-radius: 55% 45% 60% 40%;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .contact-hero {
+    min-height: 260px;
+  }
+}

@@ -3,6 +3,7 @@ import "../../styles/home/About.css";
 import aboutImg from "../../assets/home/tabs (1).png";
 import { IoStar } from "react-icons/io5";
 import AOS from "aos";
+import { FaCheck } from "react-icons/fa6";
 import "aos/dist/aos.css";
 
 const About: React.FC = () => {
@@ -26,9 +27,9 @@ const About: React.FC = () => {
           <img src={aboutImg} alt="About us" />
 
           <div className="button_about_side">
-            <button>Terminology</button>
-            <button className="discover">Discover</button>
-            <button>Terminology</button>
+            <button><FaCheck />Terminology</button>
+            <button className="discover"> <FaCheck /> Discover</button>
+            <button> <FaCheck />Terminology</button>
           </div>
         </div>
 
