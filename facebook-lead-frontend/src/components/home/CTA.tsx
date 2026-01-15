@@ -1,30 +1,36 @@
-import styles from "../../styles/home/cta.module.css";
-
-export default function CTA() {
+import '../../styles/home/Cta.css'
+import cta from '../../assets/home/cta.png'
+const Cta = () => {
   return (
-    <section className={styles.cta}>
-      <div className={styles.container}>
+    <section className="cta-wrapper">
+      <div className="cta-card">
+        
+       
+        <div className="cta-left">
+          <h1>
+            Craft your next great <br />
+            <span>content now.</span>
+          </h1>
 
-        <h2>
-          Ready to convert more <span>Facebook leads</span>?
-        </h2>
-
-        <p>
-          Join teams that respond faster, follow up smarter,
-          and close more deals with LeadFlow.
-        </p>
-
-        <div className={styles.actions}>
-          <button className={styles.primaryBtn}>Request a Demo</button>
+          <button className="cta-btn">Get started free</button>
         </div>
 
-        <div className={styles.trust}>
-          <span>No credit card required</span>
-          <span>Setup in minutes</span>
-          <span>Secure & reliable</span>
+        
+        <div className="cta-right">
+          {/* <div className="badges">
+            <p>classs</p>
+          </div> */}
+
+          <img
+            className="cta-person"
+            src={cta}
+            alt="person"
+          />
         </div>
 
       </div>
     </section>
-  );
+  )
 }
+
+export default Cta

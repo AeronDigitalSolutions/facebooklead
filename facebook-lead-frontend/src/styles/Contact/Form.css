@@ -1,0 +1,132 @@
+.contact-wrapper {
+  background: radial-gradient(circle at top, #0d0714, #05010a);
+  padding: 50px 30px;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.contact-left .contact-tag {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #a855f7;
+  font-weight: 600;
+}
+
+.contact-left h2 {
+  color: #ffffff;
+  font-size: 54px;
+  margin: 18px 0;
+  line-height: 1.2;
+}
+
+.contact-left h2 span {
+  color: #a855f7;
+  font-style: italic;
+}
+
+.contact-left p {
+  color: #cfcfd4;
+  font-size: 17px;
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+.social-icons {
+  display: flex;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  background: #7c2ae8;
+  border-color: #7c2ae8;
+}
+
+.contact-right {
+  background: #141414;
+  border-radius: 18px;
+  padding: 40px 18px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  background: #2a2a2a;
+  border: none;
+  border-radius: 8px;
+  padding: 21px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder,
+.contact-form select {
+  color: #9ca3af;
+}
+
+/* button */
+.contact-form button {
+  align-self: flex-start;
+  margin-top: 10px;
+  background: #7c2ae8;
+  color: #ffffff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #9333ea;
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-left h2 {
+    font-size: 34px;
+  }
+}

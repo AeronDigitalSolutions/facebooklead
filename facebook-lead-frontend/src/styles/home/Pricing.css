@@ -1,0 +1,308 @@
+.pricing {
+  background: #0b0b0b;
+  color: white;
+  text-align: center;
+  padding: 120px 80px;
+  font-family: "Inter", sans-serif;
+}
+
+.pricing-tag {
+  color: #9a4dff;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.pricing-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin: 20px 0 40px;
+}
+
+.pricing-title span {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+}
+
+.toggle {
+  display: inline-flex;
+  border: 1px solid #7b2cff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.toggle button {
+  padding: 10px 26px;
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle .active {
+  background: #7b2cff;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: left;
+}
+
+/* .card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 40px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+} */
+
+
+/* .card h4 {
+  font-size: 18px;
+} */
+
+/* .card p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.card h1 {
+  font-size: 42px;
+  margin: 20px 0;
+}
+
+.card h1 span {
+  font-size: 14px;
+}
+
+.card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #7b2cff;
+  background: transparent;
+  color: white;
+} */
+
+.primary {
+  background: white;
+  color: #7b2cff;
+  border: none;
+}
+
+/* Smooth appearance */
+.fade {
+  animation: fade 0.4s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* @media (max-width: 900px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+} */
+
+
+.pricing-card {
+  width: 360px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 32px 28px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
+
+.pricing_active-card{
+   width: 360px;
+background: #7b2cff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 32px 28px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+}
+
+.plan-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.plan-subtitle {
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 22px 0;
+}
+
+.price-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  position: relative;
+}
+
+.price {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.per {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.note {
+  font-size: 13px;
+  color: #9a9a9a;
+  margin-left: auto;
+  margin-bottom: 10px;
+}
+
+.trial-btn {
+  width: 100%;
+  margin: 26px 0 30px;
+  padding: 14px 0;
+  background: transparent;
+  border: 1.5px solid #8b5cf6;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.trial-btn:hover {
+  background: #8b5cf6;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #d0d0d0;
+  margin-bottom: 14px;
+}
+
+.features svg {
+  color: #8b5cf6;
+  font-size: 14px;
+}
+
+/* @media (max-width: 480px) {
+  .pricing-card {
+    width: 100%;
+  }
+
+  .price {
+    font-size: 48px;
+  }
+} */
+@media (max-width: 1024px) {
+  .pricing {
+    padding: 100px 40px;
+  }
+
+  .pricing-title {
+    font-size: 40px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .pricing-card,
+  .pricing_active-card {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .pricing {
+    padding: 40px 20px;
+  }
+
+  .pricing-title {
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .toggle {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .toggle button {
+    flex: 1;
+    padding: 12px 0;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pricing-card,
+  .pricing_active-card {
+    width: 100%;
+    padding: 28px 22px;
+  }
+
+  .price {
+    font-size: 46px;
+  }
+}
+@media (max-width: 480px) {
+  .pricing-title {
+    font-size: 26px;
+    line-height: 36px;
+  }
+
+  .pricing-tag {
+    font-size: 11px;
+  }
+
+  .plan-title {
+    font-size: 20px;
+  }
+
+  .price {
+    font-size: 40px;
+  }
+
+  .trial-btn {
+    padding: 12px 0;
+    font-size: 13px;
+  }
+
+  .features li {
+    font-size: 13px;
+  }
+}

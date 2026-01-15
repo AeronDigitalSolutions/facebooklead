@@ -4,15 +4,6 @@ import * as XLSX from "xlsx";
 import styles from "../../styles/dashbaord/emailLeads.module.css";
 import { saveEmailLeadsGroup } from "../../api/emailLeads";
 import { fetchAllEmailLeads } from "../../api/emailLeads";
-const FIELD_ALIASES: Record<string, string[]> = {
-  first_name: ["first", "firstname", "first name"],
-  last_name: ["last", "lastname", "last name"],
-  email: ["email", "email address", "mail"],
-  company: ["company", "organization", "org"],
-  position: ["position", "title", "job"],
-  phone: ["phone", "mobile", "contact"],
-  website: ["website", "url", "domain"],
-};
 
 
 type Lead = {
@@ -57,8 +48,8 @@ export default function EmailLeads() {
   const [search, setSearch] = useState("");
   const [companyFilter, setCompanyFilter] = useState("");
   const [groupFilter, setGroupFilter] = useState("");
-const [rawData, setRawData] = useState<Record<string, any>[]>([]);
-const [headers, setHeaders] = useState<string[]>([]);
+const [rawData] = useState<Record<string, any>[]>([]);
+const [headers] = useState<string[]>([]);
 const [fieldMap, setFieldMap] = useState<Record<string, string>>({
   first_name: "",
   last_name: "",
@@ -72,18 +63,6 @@ const [showMapping, setShowMapping] = useState(false);
 
 
 
-const autoMapFields = (cols: string[]) => {
-  const map: Record<string, string> = {};
-  Object.keys(FIELD_ALIASES).forEach((key) => {
-    map[key] =
-      cols.find((c) =>
-        FIELD_ALIASES[key].some((a: string) =>
-          c.toLowerCase().includes(a)
-        )
-      ) || "";
-  });
-  setFieldMap(map);
-};
 
   /* =========================
      FETCH DB LEADS

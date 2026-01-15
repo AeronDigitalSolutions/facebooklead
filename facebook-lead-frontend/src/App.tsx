@@ -44,12 +44,16 @@ import InstagramConnect from "./pages/instagram/InstagramConnect";
 import InstagramAccounts from "./pages/instagram/InstagramAccounts";
 import InstagramInbox from "./pages/instagram/InstagramInbox";
 import EmailLeads from "./components/email/EmailLeads";
+import Contact from "./components/Contact/Contact";
+import AboutPage from "./pages/AboutPages/AboutPage";
 
 export default function App() {
   return (
     <Routes>
       {/* 🌐 PUBLIC ROUTES */}
       <Route path="/" element={<Home />} />
+      <Route path="/aboutpage" element={<AboutPage/>}/>
+      <Route path="/contact" element={<Contact/>}/>
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
 

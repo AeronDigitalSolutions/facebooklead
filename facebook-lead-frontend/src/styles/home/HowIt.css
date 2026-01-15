@@ -1,0 +1,174 @@
+.howit-section {
+  min-height: 100vh;
+  background: #0b0615;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.orbit-wrapper {
+  position: relative;
+  width: 900px;
+  height: 700px;
+}
+
+.solar {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 520px;
+  height: 520px;
+}
+
+.solar i {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  animation: orbit 6s linear infinite;
+}
+
+.solar i::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  right: 60px;
+  width: 14px;
+  height: 14px;
+  background: #1470e4;
+  border-radius: 50%;
+}
+
+.circle-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.circle-content .tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #a970ff;
+}
+
+.circle-content h2 {
+  font-size: 36px;
+  margin: 16px 0 22px;
+  line-height: 1.2;
+}
+
+.circle-content button {
+  padding: 12px 26px;
+  border-radius: 24px;
+  border: none;
+  background: linear-gradient(135deg, #7b2cff, #9a4dff);
+  color: white;
+  cursor: pointer;
+}
+
+.step-card {
+  position: absolute;
+  width: 334px;
+  height: 200px;
+  background: linear-gradient(180deg, #7b2cff, #3b145f);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.step-card h4 {
+  margin: 12px 0 6px;
+  font-size: 16px;
+}
+
+.step-card p {
+  font-size: 13px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.step-badge {
+  display: inline-block;
+  background: black;
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.step-1 {
+  left: -40px;
+    top: 50%;
+    z-index: 22;
+}
+
+.step-2 {
+  right: -17px;
+    top: 11%;
+    z-index: 111;
+}
+
+.step-3 {
+      right: 0px;
+    bottom: 64px;
+    z-index: 333;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 768px) {
+  .solar {
+    display: none;   
+  }
+
+  .orbit-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 30px;
+  }
+
+  .step-card {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+@media (max-width: 992px) {
+  .orbit-wrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .step-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 20px auto;
+  }
+
+  .step-1,
+  .step-2,
+  .step-3 {
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+  }
+
+  .solar {
+    width: 400px;
+    height: 400px;
+  }
+}

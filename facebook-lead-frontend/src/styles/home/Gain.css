@@ -1,0 +1,143 @@
+
+.ai {
+  color: #fff;
+  padding: 120px 80px;
+    background: radial-gradient(circle at top left, #2a1640, #0b0615 70%);
+
+  font-family: "Inter", sans-serif;
+}
+
+.ai-container {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ===============================
+   LEFT CONTENT
+=============================== */
+.ai-tag {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #9a4dff;
+  display: inline-block;
+}
+
+.ai-title {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 20px 0 28px;
+}
+
+.ai-title span {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  text-decoration: underline #7b2cff;
+}
+
+.ai-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 36px;
+}
+
+.ai-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+  color: #cfcfcf;
+  line-height: 1.6;
+}
+
+.ai-list svg {
+  color: #9a4dff;
+  font-size: 20px;
+  margin-top: 4px;
+}
+
+/* ===============================
+   BUTTON
+=============================== */
+.ai-btn {
+  --bg: #000;
+  --hover-bg: #7b2cff;
+
+  background: var(--bg);
+  color: #fff;
+  border: 1px solid var(--bg);
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.25s ease;
+}
+
+.ai-btn:hover {
+  background: var(--hover-bg);
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px #000;
+}
+
+.ai-btn:active {
+  transform: translate(0);
+  box-shadow: none;
+}
+
+/* ===============================
+   RIGHT IMAGE
+=============================== */
+.ai-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ai-image {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 20px;
+}
+
+/* ===============================
+   RESPONSIVE
+=============================== */
+@media (max-width: 1024px) {
+  .ai {
+    padding: 90px 40px;
+  }
+
+  .ai-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .ai-right {
+    justify-content: center;
+  }
+
+  .ai-list li {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .ai {
+    padding: 70px 20px;
+  }
+
+  .ai-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .ai-list li {
+    font-size: 15px;
+  }
+
+  .ai-btn {
+    width: 100%;
+  }
+}

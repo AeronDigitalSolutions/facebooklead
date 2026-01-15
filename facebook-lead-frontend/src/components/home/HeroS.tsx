@@ -1,33 +1,25 @@
 // import React from 'react'
 import Slider from "react-slick";
 import heroImg from '../../assets/home/image-1 (1).png'
-import '../../styles/home/hero.css'
 import '../../styles/home/React.css'
-import  { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-const Hero = () => {
+
+import '../../styles/home/React.css'
+const React = () => {
      const settings = {
     // dots: true,
     infinite: true,
       autoplay: true,
     speed: 500,
     slidesToShow: 1,
-     arrows: false,   
+     arrows: false,   // ❌ Prev / Next remove
     slidesToScroll: 1
   };
-   useEffect(() => {
-      AOS.init({
-        duration: 1000,
-        once: true,
-      });
-    }, []);
   return (
-    <div className="slider-container" style={{background:'#0b0615'}}>
+    <div className="slider-container">
       <Slider {...settings}>
         <section className="hero">
       <div className="hero-container">
-        <div className="hero-left" data-aos="fade-up-right">
+        <div className="hero-left">
           <span className="badge">👋 AI makes content fast & easy</span>
 
           <h1>
@@ -51,9 +43,7 @@ const Hero = () => {
         </div>
 
       
-        <div className="hero-right" data-aos="fade-right"
-  data-aos-duration="2000"
-  data-aos-easing="ease-in-out">
+        <div className="hero-right">
           <img src={heroImg} alt="Hero" />
           <div className="efficiency-card">
             <h4>↑ 90%</h4>
@@ -168,4 +158,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default React
