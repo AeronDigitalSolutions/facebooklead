@@ -37,6 +37,13 @@ import GoogleAccounts from "./components/dashboard/google/GoogleAccounts";
 import GoogleCampaigns from "./components/dashboard/google/GoogleCampaigns";
 import GoogleLeads from "./components/dashboard/google/GoogleLeads";
 import GoogleSuccess from "./pages/google/GoogleSuccess";
+import ConnectMailbox from "./pages/email/infrastructure/ConnectMailbox";
+import EmailAccounts from "./pages/email/infrastructure/EmailAccounts";
+import InboxPage from "./pages/email/inbox/Inbox";
+import InstagramConnect from "./pages/instagram/InstagramConnect";
+import InstagramAccounts from "./pages/instagram/InstagramAccounts";
+import InstagramInbox from "./pages/instagram/InstagramInbox";
+import EmailLeads from "./components/email/EmailLeads";
 
 export default function App() {
   return (
@@ -85,9 +92,17 @@ export default function App() {
 
       {/* 🌍 PUBLIC FORM (IFRAME / SHAREABLE) */}
       <Route path="/forms/:formId" element={<PublicForm />} />
+              <Route path="email/connect" element={<ConnectMailbox />} />
+<Route path="email/accounts" element={<EmailAccounts />} />
+<Route path="email/inbox" element={<InboxPage/>} />
+ <Route path="instagram/connect" element={<InstagramConnect/>} />
+  <Route path="instagram/accounts" element={<InstagramAccounts />} />
+  <Route path="instagram/inbox" element={<InstagramInbox />} />
+<Route path="/dashboard/email-leads" element={<EmailLeads/>} />
 
       {/* ❌ FALLBACK */}
       <Route path="*" element={<p>Page not found</p>} />
     </Routes>
   );
 }
+
