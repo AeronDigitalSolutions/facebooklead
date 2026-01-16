@@ -1,9 +1,19 @@
 import axios from "../lib/axios";
 
-/* 🔥 START OAUTH (CORRECT WAY) */
-export const connectGoogleAds = async () => {
-  const res = await axios.get("/google/auth"); // JWT sent here
-  window.location.href = res.data.url;         // Redirect to Google
+/**
+ * 🔥 START GOOGLE OAUTH
+ * Browser redirect (NOT axios)
+ */
+export const connectGoogleAds = () => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login again");
+    return;
+  }
+
+  // Pass JWT as query param
+  window.location.href = `${import.meta.env.VITE_API_URL}/google/auth?token=${token}`;
 };
 
 /* 🔐 FETCH ACCOUNTS */

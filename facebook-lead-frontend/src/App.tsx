@@ -46,6 +46,8 @@ import InstagramInbox from "./pages/instagram/InstagramInbox";
 import EmailLeads from "./components/email/EmailLeads";
 import Contact from "./components/Contact/Contact";
 import AboutPage from "./pages/AboutPages/AboutPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 export default function App() {
   return (
@@ -103,6 +105,8 @@ export default function App() {
   <Route path="instagram/accounts" element={<InstagramAccounts />} />
   <Route path="instagram/inbox" element={<InstagramInbox />} />
 <Route path="/dashboard/email-leads" element={<EmailLeads/>} />
+<Route path="/privacy" element={<PrivacyPolicy />} />
+<Route path="/terms" element={<TermsAndConditions />} />
 
       {/* ❌ FALLBACK */}
       <Route path="*" element={<p>Page not found</p>} />

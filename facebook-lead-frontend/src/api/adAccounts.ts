@@ -1,15 +1,21 @@
-import axios from "@/lib/axios";
-import type { AdAccount } from "../types/adAccount";
+import axios from "../lib/axios";
 
-const getHeaders = () => {
-  const token = localStorage.getItem("meta_access_token");
-  return token ? { Authorization: `Bearer ${token}` } : {};
+/* 🔥 START GOOGLE OAUTH (FULL PAGE REDIRECT) */
+export const connectGoogleAds = () => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login again");
+    window.location.href = "/signin";
+    return;
+  }
+
+  // IMPORTANT: direct browser redirect
+  window.location.href =
+    `${import.meta.env.VITE_API_URL}/api/google/auth`;
 };
 
-export const fetchAdAccounts = async (): Promise<AdAccount[]> => {
-  const res = await axios.get("/meta/ad-accounts", {
-    headers: getHeaders(),
-  });
-
-  return Array.isArray(res.data) ? res.data : [];
+/* 🔐 FETCH ACCOUNTS */
+export const fetchGoogleAccounts = () => {
+  return axios.get("/google/accounts");
 };

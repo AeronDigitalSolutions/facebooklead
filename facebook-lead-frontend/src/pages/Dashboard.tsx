@@ -4,133 +4,171 @@ import styles from "../styles/dashboard.module.css";
 export default function Dashboard() {
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/signin");
+  };
+
   return (
     <div className={styles.wrapper}>
       {/* SIDEBAR */}
-      <aside className={styles.sidebar}>
-        <div className={styles.logo}>LeadFlow</div>
+      <aside
+        className={styles.sidebar}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* TOP CONTENT */}
+        <div>
+          <div className={styles.logo}>LeadFlow</div>
 
-        <nav className={styles.menu}>
-          <div className={styles.item} onClick={() => navigate("/dashboard")}>
-            Dashboard
-          </div>
+          <nav className={styles.menu}>
+            <div className={styles.item} onClick={() => navigate("/dashboard")}>
+              Dashboard
+            </div>
 
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/add-accounts")}
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/add-accounts")}
+            >
+              Add Accounts
+            </div>
+
+            <div className={styles.section}>Ad Accounts</div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/campaigns")}
+            >
+              Campaigns
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/leads")}
+            >
+              Leads
+            </div>
+
+            <div
+              className={styles.subItem}
+              onClick={() => navigate("/dashboard/email-leads")}
+            >
+              Email Leads
+            </div>
+
+            <div className={styles.section}>Forms</div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/form")}
+            >
+              Form Builder
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/forms")}
+            >
+              Form List
+            </div>
+
+            <div className={styles.section}>Google Ads</div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/google/accounts")}
+            >
+              Google Accounts
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/google/campaigns")}
+            >
+              Google Campaigns
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/google/leads")}
+            >
+              Google Leads
+            </div>
+
+            <div className={styles.section}>Email</div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/email/connect")}
+            >
+              Email Connection
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/email/accounts")}
+            >
+              Email Accounts
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/email/inbox")}
+            >
+              Inbox
+            </div>
+
+            <div className={styles.section}>Instagram</div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/instagram/connect")}
+            >
+              Connect Instagram
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/instagram/accounts")}
+            >
+              Instagram Accounts
+            </div>
+
+            <div
+              className={styles.item}
+              onClick={() => navigate("/dashboard/instagram/inbox")}
+            >
+              Instagram Inbox
+            </div>
+          </nav>
+        </div>
+
+        {/* 🔴 LOGOUT BUTTON */}
+        <div
+          style={{
+            padding: "16px",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          <button
+            onClick={handleLogout}
+            style={{
+              width: "100%",
+              padding: "10px",
+              background: "#ef4444",
+              color: "#fff",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
           >
-            Add Accounts
-          </div>
-
-          <div className={styles.section}>Ad Accounts</div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/campaigns")}
-          >
-            Campaigns
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/leads")}
-          >
-            Leads
-          </div>
-
-          {/* 🔥 NEW SUB TAB */}
-          <div
-            className={styles.subItem}
-            onClick={() => navigate("/dashboard/email-leads")}
-          >
-            Email Leads
-          </div>
-
-          <div className={styles.section}>Forms</div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/form")}
-          >
-            Form Builder
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/forms")}
-          >
-            Form List
-          </div>
-
-          <div className={styles.section}>Google Ads</div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/google/accounts")}
-          >
-            Google Accounts
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/google/campaigns")}
-          >
-            Google Campaigns
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/google/leads")}
-          >
-            Google Leads
-          </div>
-
-          <div className={styles.section}>Email</div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/email/connect")}
-          >
-            Email Connection
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/email/accounts")}
-          >
-            Email Accounts
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/email/inbox")}
-          >
-            Inbox
-          </div>
-
-          <div className={styles.section}>Instagram</div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/instagram/connect")}
-          >
-            Connect Instagram
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/instagram/accounts")}
-          >
-            Instagram Accounts
-          </div>
-
-          <div
-            className={styles.item}
-            onClick={() => navigate("/dashboard/instagram/inbox")}
-          >
-            Instagram Inbox
-          </div>
-        </nav>
+            Logout
+          </button>
+        </div>
       </aside>
 
       {/* CHILD ROUTES */}

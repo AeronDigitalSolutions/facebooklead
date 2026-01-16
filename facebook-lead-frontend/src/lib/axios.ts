@@ -1,17 +1,14 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL, // ✅ NO /api HERE
+  baseURL: import.meta.env.VITE_API_URL + "/api",
 });
 
-/* 🔐 ATTACH JWT TOKEN */
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
-
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-
   return config;
 });
 

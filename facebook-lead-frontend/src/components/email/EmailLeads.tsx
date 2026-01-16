@@ -2,9 +2,11 @@ import { useState, useMemo, useEffect } from "react";
 import Papa from "papaparse";
 import * as XLSX from "xlsx";
 import styles from "../../styles/dashbaord/emailLeads.module.css";
-import { saveEmailLeadsGroup } from "../../api/emailLeads";
-import { fetchAllEmailLeads } from "../../api/emailLeads";
-
+import {
+  saveEmailLeadsGroup,
+  fetchAllEmailLeads,
+  fetchEmailLeadGroups,
+} from "../../api/emailLeads";
 
 type Lead = {
   first_name: string;
@@ -14,13 +16,14 @@ type Lead = {
   position: string;
   phone: string;
   website: string;
+  [key: string]: any; // 🔥 dynamic columns
   groupId?: {
     _id: string;
     name: string;
   };
 };
 
-const REQUIRED_HEADERS = [
+const SYSTEM_FIELDS = [
   "first_name",
   "last_name",
   "email",
@@ -33,13 +36,32 @@ const REQUIRED_HEADERS = [
 export default function EmailLeads() {
   const [showUpload, setShowUpload] = useState(false);
   const [showGroupModal, setShowGroupModal] = useState(false);
+  const [showMapping, setShowMapping] = useState(false);
 
   const [groupName, setGroupName] = useState("");
+  const [selectedGroupId, setSelectedGroupId] = useState<string>("");
+
   const [fileToProcess, setFileToProcess] = useState<File | null>(null);
 
   const [leads, setLeads] = useState<Lead[]>([]);
   const [dbLeads, setDbLeads] = useState<Lead[]>([]);
+  const [groups, setGroups] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  /* RAW DATA */
+  const [rawData, setRawData] = useState<Record<string, any>[]>([]);
+  const [headers, setHeaders] = useState<string[]>([]);
+
+  /* 🔥 NEW: COLUMN CONFIG (ADDED, NOT REPLACED) */
+  const [columnConfig, setColumnConfig] = useState<
+    Record<
+      string,
+      {
+        target: string;
+        type: "system" | "custom" | "ignore";
+      }
+    >
+  >({});
 
   /* VIEW MODE */
   const [viewMode, setViewMode] = useState<"upload" | "db">("upload");
@@ -48,30 +70,17 @@ export default function EmailLeads() {
   const [search, setSearch] = useState("");
   const [companyFilter, setCompanyFilter] = useState("");
   const [groupFilter, setGroupFilter] = useState("");
-const [rawData] = useState<Record<string, any>[]>([]);
-const [headers] = useState<string[]>([]);
-const [fieldMap, setFieldMap] = useState<Record<string, string>>({
-  first_name: "",
-  last_name: "",
-  email: "",
-  company: "",
-  position: "",
-  phone: "",
-  website: "",
-});
-const [showMapping, setShowMapping] = useState(false);
-
-
-
 
   /* =========================
-     FETCH DB LEADS
+     FETCH DATA
   ========================= */
   useEffect(() => {
+    fetchEmailLeadGroups().then((res) => setGroups(res.data));
+  }, []);
+
+  useEffect(() => {
     if (viewMode === "db") {
-      fetchAllEmailLeads().then((res) => {
-        setDbLeads(res.data);
-      });
+      fetchAllEmailLeads().then((res) => setDbLeads(res.data));
     }
   }, [viewMode]);
 
@@ -81,9 +90,22 @@ const [showMapping, setShowMapping] = useState(false);
   const handleFileSelect = (file: File) => {
     setError(null);
     setFileToProcess(file);
-    setGroupName("");
     setShowGroupModal(true);
     setShowUpload(false);
+  };
+
+  /* =========================
+     INIT COLUMN CONFIG
+  ========================= */
+  const initColumnConfig = (cols: string[]) => {
+    const cfg: any = {};
+    cols.forEach((c) => {
+      cfg[c] = {
+        target: c,
+        type: SYSTEM_FIELDS.includes(c) ? "system" : "custom",
+      };
+    });
+    setColumnConfig(cfg);
   };
 
   /* =========================
@@ -91,59 +113,79 @@ const [showMapping, setShowMapping] = useState(false);
   ========================= */
   const importLeads = async () => {
     if (!fileToProcess) return;
-    if (!groupName.trim()) {
-      setError("Lead group name is required");
-      return;
-    }
 
-    const fileName = fileToProcess.name.toLowerCase();
+    const name = fileToProcess.name.toLowerCase();
 
-    if (fileName.endsWith(".csv")) {
+    if (name.endsWith(".csv")) {
       Papa.parse(fileToProcess, {
         header: true,
         skipEmptyLines: true,
-        complete: async (results: Papa.ParseResult<Record<string, any>>) => {
-          validateAndSave(results.data, results.meta.fields || []);
+        complete: (results) => {
+          setRawData(results.data as any[]);
+          setHeaders(results.meta.fields || []);
+          initColumnConfig(results.meta.fields || []);
+          setShowMapping(true);
+          setShowGroupModal(false);
         },
       });
     } else {
-      const data = await fileToProcess.arrayBuffer();
-      const workbook = XLSX.read(data);
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(sheet) as Record<string, any>[];
-      validateAndSave(json, Object.keys(json[0] || {}));
+      const buf = await fileToProcess.arrayBuffer();
+      const wb = XLSX.read(buf);
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(sheet) as any[];
+      setRawData(json);
+      const cols = Object.keys(json[0] || {});
+      setHeaders(cols);
+      initColumnConfig(cols);
+      setShowMapping(true);
+      setShowGroupModal(false);
     }
   };
 
-  const validateAndSave = async (data: Record<string, any>[], headers: string[]) => {
-    const lowerHeaders = headers.map((h) => h.toLowerCase());
-    const missing = REQUIRED_HEADERS.filter(
-      (h) => !lowerHeaders.includes(h)
-    );
-
-    if (missing.length > 0) {
-      setError(`Missing fields: ${missing.join(", ")}`);
+  /* =========================
+     SAVE MAPPED LEADS
+  ========================= */
+  const saveMappedLeads = async () => {
+    if (
+      !Object.values(columnConfig).some(
+        (c) => c.type === "system" && c.target === "email"
+      )
+    ) {
+      setError("Email mapping is required");
       return;
     }
 
-    await saveEmailLeadsGroup(groupName, data);
-    setLeads(data as Lead[]);
-    setShowGroupModal(false);
+    const mapped = rawData.map((row) => {
+      const lead: any = {};
+
+      Object.entries(columnConfig).forEach(([csvCol, cfg]) => {
+        if (cfg.type === "ignore") return;
+        if (!cfg.target) return;
+        lead[cfg.target] = row[csvCol];
+      });
+
+      return lead;
+    });
+
+    await saveEmailLeadsGroup(
+      groupName,
+      mapped,
+      selectedGroupId || undefined
+    );
+
+    setLeads(mapped);
+    setShowMapping(false);
     setViewMode("upload");
   };
 
   /* =========================
-     DATA SOURCE SWITCH
+     FILTERED DATA
   ========================= */
   const sourceLeads = viewMode === "db" ? dbLeads : leads;
 
-  /* =========================
-     FILTERED LEADS
-  ========================= */
   const filteredLeads = useMemo(() => {
     return sourceLeads.filter((l) => {
       const text = `${l.first_name} ${l.last_name} ${l.email} ${l.company}`.toLowerCase();
-
       return (
         text.includes(search.toLowerCase()) &&
         (companyFilter ? l.company === companyFilter : true) &&
@@ -151,23 +193,6 @@ const [showMapping, setShowMapping] = useState(false);
       );
     });
   }, [sourceLeads, search, companyFilter, groupFilter]);
-
-  const companies = useMemo(
-    () => Array.from(new Set(sourceLeads.map((l) => l.company))),
-    [sourceLeads]
-  );
-
-  const groups = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          dbLeads
-            .map((l) => l.groupId?.name)
-            .filter(Boolean)
-        )
-      ),
-    [dbLeads]
-  );
 
   return (
     <div className={styles.wrapper}>
@@ -193,22 +218,10 @@ const [showMapping, setShowMapping] = useState(false);
           {showUpload && (
             <div className={styles.dropdown}>
               <label className={styles.uploadOption}>
-                Upload CSV
+                Upload CSV / Excel
                 <input
                   type="file"
-                  accept=".csv"
-                  hidden
-                  onChange={(e) =>
-                    e.target.files && handleFileSelect(e.target.files[0])
-                  }
-                />
-              </label>
-
-              <label className={styles.uploadOption}>
-                Upload Excel
-                <input
-                  type="file"
-                  accept=".xlsx,.xls"
+                  accept=".csv,.xlsx,.xls"
                   hidden
                   onChange={(e) =>
                     e.target.files && handleFileSelect(e.target.files[0])
@@ -222,105 +235,128 @@ const [showMapping, setShowMapping] = useState(false);
 
       {error && <div className={styles.error}>{error}</div>}
 
-      {/* FILTER BAR */}
-      {sourceLeads.length > 0 && (
-        <div className={styles.filters}>
-          <input
-            placeholder="Search name, email, company..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+      {/* GROUP MODAL */}
+      {showGroupModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h3>Select Lead Group</h3>
 
-          <select
-            value={companyFilter}
-            onChange={(e) => setCompanyFilter(e.target.value)}
-          >
-            <option value="">All Companies</option>
-            {companies.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-
-          {viewMode === "db" && (
             <select
-              value={groupFilter}
-              onChange={(e) => setGroupFilter(e.target.value)}
+              value={selectedGroupId}
+              onChange={(e) => setSelectedGroupId(e.target.value)}
             >
-              <option value="">All Groups</option>
+              <option value="">➕ Create new group</option>
               {groups.map((g) => (
-                <option key={g} value={g}>
-                  {g}
+                <option key={g._id} value={g._id}>
+                  {g.name}
                 </option>
               ))}
             </select>
-          )}
 
-          <span className={styles.count}>
-            {filteredLeads.length} leads
-          </span>
+            {!selectedGroupId && (
+              <input
+                placeholder="New group name"
+                value={groupName}
+                onChange={(e) => setGroupName(e.target.value)}
+              />
+            )}
+
+            <div className={styles.modalActions}>
+              <button onClick={() => setShowGroupModal(false)}>Cancel</button>
+              <button className={styles.primary} onClick={importLeads}>
+                Continue
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
+      {/* FIELD MAPPING */}
+      {showMapping && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalLarge}>
+            <h3>Map & Rename Columns</h3>
 
-{showMapping && (
-  <div className={styles.modalOverlay}>
-    <div className={styles.modalLarge}>
-      <h3>Map Fields</h3>
-
-      {Object.keys(fieldMap).map((key) => (
-        <div key={key} className={styles.mapRow}>
-          <label>{key.replace("_", " ")}</label>
-          <select
-            value={fieldMap[key]}
-            onChange={(e) =>
-              setFieldMap({
-                ...fieldMap,
-                [key]: e.target.value,
-              })
-            }
-          >
-            <option value="">Ignore</option>
             {headers.map((h) => (
-              <option key={h} value={h}>
-                {h}
+              <div key={h} className={styles.mapRow}>
+                <strong>{h}</strong>
+
+                <select
+                  value={columnConfig[h]?.type}
+                  onChange={(e) =>
+                    setColumnConfig({
+                      ...columnConfig,
+                      [h]: {
+                        ...columnConfig[h],
+                        type: e.target.value as any,
+                      },
+                    })
+                  }
+                >
+                  <option value="system">System</option>
+                  <option value="custom">Custom</option>
+                  <option value="ignore">Ignore</option>
+                </select>
+
+                {columnConfig[h]?.type !== "ignore" && (
+                  <input
+                    placeholder="Column name"
+                    value={columnConfig[h]?.target}
+                    onChange={(e) =>
+                      setColumnConfig({
+                        ...columnConfig,
+                        [h]: {
+                          ...columnConfig[h],
+                          target: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                )}
+              </div>
+            ))}
+
+            <div className={styles.modalActions}>
+              <button onClick={() => setShowMapping(false)}>Cancel</button>
+              <button className={styles.primary} onClick={saveMappedLeads}>
+                Save Leads
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FILTERS */}
+      <div className={styles.filters}>
+        <input
+          type="text"
+          placeholder="Search leads..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Filter by company"
+          value={companyFilter}
+          onChange={(e) => setCompanyFilter(e.target.value)}
+        />
+        {viewMode === "db" && (
+          <select
+            value={groupFilter}
+            onChange={(e) => setGroupFilter(e.target.value)}
+          >
+            <option value="">All groups</option>
+            {groups.map((g) => (
+              <option key={g._id} value={g.name}>
+                {g.name}
               </option>
             ))}
           </select>
+        )}
+        <div className={styles.count}>
+          {filteredLeads.length} leads
         </div>
-      ))}
-
-      <div className={styles.modalActions}>
-        <button onClick={() => setShowMapping(false)}>
-          Cancel
-        </button>
-        <button
-          className={styles.primary}
-          onClick={async () => {
-            const mapped = rawData.map((row) => ({
-              first_name: row[fieldMap.first_name],
-              last_name: row[fieldMap.last_name],
-              email: row[fieldMap.email],
-              company: row[fieldMap.company],
-              position: row[fieldMap.position],
-              phone: row[fieldMap.phone],
-              website: row[fieldMap.website],
-            }));
-
-            await saveEmailLeadsGroup(groupName, mapped);
-            setLeads(mapped);
-            setShowMapping(false);
-            setShowGroupModal(false);
-          }}
-        >
-          Save Leads
-        </button>
       </div>
-    </div>
-  </div>
-)}
-
 
       {/* TABLE */}
       <div className={styles.tableWrapper}>
@@ -339,14 +375,6 @@ const [showMapping, setShowMapping] = useState(false);
           </thead>
 
           <tbody>
-            {filteredLeads.length === 0 && (
-              <tr>
-                <td colSpan={viewMode === "db" ? 8 : 7} className={styles.empty}>
-                  No email leads found
-                </td>
-              </tr>
-            )}
-
             {filteredLeads.map((l, i) => (
               <tr key={i}>
                 <td>{l.first_name}</td>
@@ -355,43 +383,13 @@ const [showMapping, setShowMapping] = useState(false);
                 <td>{l.company}</td>
                 <td>{l.position}</td>
                 <td>{l.phone}</td>
-                <td>
-                  <a href={l.website} target="_blank">
-                    {l.website}
-                  </a>
-                </td>
-                {viewMode === "db" && (
-                  <td>{l.groupId?.name}</td>
-                )}
+                <td>{l.website}</td>
+                {viewMode === "db" && <td>{l.groupId?.name}</td>}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      {/* GROUP MODAL */}
-      {showGroupModal && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
-            <h3>Create Lead Group</h3>
-
-            <input
-              placeholder="Lead group name"
-              value={groupName}
-              onChange={(e) => setGroupName(e.target.value)}
-            />
-
-            <div className={styles.modalActions}>
-              <button onClick={() => setShowGroupModal(false)}>
-                Cancel
-              </button>
-              <button className={styles.primary} onClick={importLeads}>
-                Import Leads
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

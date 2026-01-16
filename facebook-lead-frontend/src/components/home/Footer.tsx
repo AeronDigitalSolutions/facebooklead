@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../../styles/home/footer.module.css";
 
 export default function Footer() {
@@ -13,8 +14,8 @@ export default function Footer() {
             <div className={styles.brand}>
               <h3>LeadFlow</h3>
               <p>
-                All-in-one Facebook Lead Management platform designed to
-                help teams respond faster and convert more.
+                All-in-one Facebook & Google Lead Management platform designed
+                to help teams respond faster and convert more.
               </p>
             </div>
 
@@ -25,21 +26,21 @@ export default function Footer() {
                 <a href="#features">Features</a>
                 <a href="#how">How it Works</a>
                 <a href="#pricing">Pricing</a>
-                <a href="/login">Login</a>
+                <Link to="/signin">Login</Link>
               </div>
 
               <div>
                 <h4>Company</h4>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
-                <a href="/careers">Careers</a>
+                <Link to="/about">About</Link>
+                <Link to="/contact">Contact</Link>
+                <Link to="/careers">Careers</Link>
               </div>
 
+              {/* 🔐 LEGAL (Google Verification Ready) */}
               <div>
                 <h4>Legal</h4>
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
-                <a href="/security">Security</a>
+                <Link to="/privacy">Privacy Policy</Link>
+                <Link to="/terms">Terms of Service</Link>
               </div>
             </div>
 
