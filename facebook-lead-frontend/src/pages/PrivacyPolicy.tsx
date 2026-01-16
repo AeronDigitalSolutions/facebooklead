@@ -1,136 +1,128 @@
 export default function PrivacyPolicy() {
   return (
     <div style={styles.page}>
-      <div style={styles.card}>
+      <div style={styles.container}>
         <h1 style={styles.title}>Privacy Policy</h1>
         <p style={styles.updated}>
           Last updated: {new Date().toDateString()}
         </p>
 
-        <section style={styles.section}>
-          <p>
-            LeadFlow (“LeadFlow”, “we”, “our”, or “us”) is committed to protecting
-            your privacy. This Privacy Policy explains how we collect, use,
-            disclose, and safeguard your information when you use our platform,
-            website, and services.
-          </p>
-        </section>
+        <Section title="1. Overview">
+          LeadFlow (“we”, “our”, or “us”) respects your privacy. This Privacy
+          Policy explains how we collect, use, and protect your information
+          when you use our platform.
+        </Section>
 
-        <section style={styles.section}>
-          <h2>1. Information We Collect</h2>
-          <p>We collect the following categories of information:</p>
-          <ul>
+        <Section title="2. Information We Collect">
+          <ul style={styles.list}>
+            <li>Personal details such as name and email address</li>
+            <li>Authentication tokens and session identifiers</li>
             <li>
-              <strong>Personal Information:</strong> Name, email address, and
-              account credentials.
+              Advertising data from Google Ads or Meta that you explicitly
+              authorize
             </li>
-            <li>
-              <strong>Authentication Data:</strong> Login tokens and session
-              identifiers.
-            </li>
-            <li>
-              <strong>Advertising Data:</strong> Google Ads and Meta campaign,
-              account, and performance data that you explicitly authorize.
-            </li>
-            <li>
-              <strong>Usage Data:</strong> Log data, IP address, browser type,
-              and platform activity.
-            </li>
+            <li>Usage and diagnostic information</li>
           </ul>
-        </section>
+        </Section>
 
-        <section style={styles.section}>
-          <h2>2. How We Use Your Information</h2>
-          <p>Your data is used strictly to:</p>
-          <ul>
-            <li>Provide and operate LeadFlow services</li>
-            <li>Authenticate and secure user accounts</li>
-            <li>Display advertising insights and analytics</li>
-            <li>Improve platform performance and reliability</li>
-            <li>Comply with legal and regulatory requirements</li>
-          </ul>
-        </section>
+        <Section title="3. How We Use Data">
+          We use your information solely to operate LeadFlow, provide analytics,
+          secure accounts, and improve performance.
+        </Section>
 
-        <section style={styles.section}>
-          <h2>3. Google API & OAuth Data Usage</h2>
-          <p>
-            LeadFlow’s use and transfer of information received from Google APIs
-            adheres to the{" "}
-            <strong>
-              Google API Services User Data Policy, including the Limited Use
-              requirements
-            </strong>.
-          </p>
-          <p>
-            We only access Google Ads data that is necessary to provide
-            user-requested functionality. We do not sell, share, or use Google
-            user data for advertising purposes.
-          </p>
-        </section>
+        <Section title="4. Google API & OAuth Compliance">
+          LeadFlow’s use of information received from Google APIs complies with
+          the <strong>Google API Services User Data Policy</strong>, including
+          Limited Use requirements. We do not sell or misuse Google user data.
+        </Section>
 
-        <section style={styles.section}>
-          <h2>4. Data Storage & Security</h2>
-          <p>
-            We implement administrative, technical, and physical safeguards to
-            protect your information, including encryption, access controls,
-            and secure storage.
-          </p>
-        </section>
+        <Section title="5. Data Security">
+          We implement encryption, access controls, and industry-standard
+          safeguards to protect your information.
+        </Section>
 
-        <section style={styles.section}>
-          <h2>5. Data Retention</h2>
-          <p>
-            We retain user data only for as long as necessary to provide our
-            services or comply with legal obligations. Users may request data
-            deletion at any time.
-          </p>
-        </section>
+        <Section title="6. Data Retention">
+          Data is retained only as long as required for service delivery or
+          legal compliance. Users may request deletion at any time.
+        </Section>
 
-        <section style={styles.section}>
-          <h2>6. Your Rights</h2>
-          <p>
-            You have the right to access, update, or delete your personal data.
-            Requests can be made by contacting us.
-          </p>
-        </section>
+        <Section title="7. Your Rights">
+          You may access, update, or delete your data by contacting us.
+        </Section>
 
-        <section style={styles.section}>
-          <h2>7. Contact Information</h2>
-          <p>
-            📧 Email: <strong>aerondigitalofficial@gmail.com</strong>
-          </p>
-        </section>
+        <Section title="8. Contact">
+          📧 <strong>aerondigitalofficial@gmail.com</strong>
+        </Section>
       </div>
     </div>
   );
 }
 
+/* ---------------- HELPERS ---------------- */
+
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section style={styles.section}>
+      <h2 style={styles.heading}>{title}</h2>
+      <div style={styles.text}>{children}</div>
+    </section>
+  );
+}
+
+/* ---------------- STYLES ---------------- */
+
 const styles: Record<string, React.CSSProperties> = {
   page: {
     minHeight: "100vh",
-    background: "linear-gradient(135deg, #eef2ff, #f8fafc)",
-    padding: "60px 20px",
+    background:
+      "radial-gradient(circle at top left, #3b0764, #020617 60%)",
+    padding: "80px 20px",
+    fontFamily: "Inter, system-ui, sans-serif",
   },
-  card: {
+  container: {
     maxWidth: "900px",
     margin: "0 auto",
-    background: "#ffffff",
-    borderRadius: "16px",
-    padding: "50px",
-    fontFamily: "Inter, system-ui, sans-serif",
-    color: "#1f2937",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+    background: "rgba(15, 23, 42, 0.85)",
+    borderRadius: "20px",
+    padding: "56px",
+    color: "#e5e7eb",
+    boxShadow:
+      "0 0 0 1px rgba(168,85,247,0.25), 0 30px 80px rgba(0,0,0,0.6)",
+    backdropFilter: "blur(12px)",
   },
   title: {
-    fontSize: "38px",
-    marginBottom: "6px",
+    fontSize: "42px",
+    fontWeight: 800,
+    background: "linear-gradient(90deg, #a855f7, #22d3ee)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    marginBottom: "8px",
   },
   updated: {
-    color: "#6b7280",
-    marginBottom: "32px",
+    color: "#94a3b8",
+    marginBottom: "40px",
   },
   section: {
-    marginBottom: "28px",
-    lineHeight: 1.7,
+    marginBottom: "36px",
+  },
+  heading: {
+    fontSize: "22px",
+    color: "#c084fc",
+    marginBottom: "10px",
+  },
+  text: {
+    color: "#d1d5db",
+    lineHeight: 1.75,
+    fontSize: "16px",
+  },
+  list: {
+    paddingLeft: "18px",
+    lineHeight: 1.8,
   },
 };
