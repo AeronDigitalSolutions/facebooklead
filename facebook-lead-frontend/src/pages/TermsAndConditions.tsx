@@ -78,7 +78,7 @@ export default function TermsAndConditions() {
         <section style={styles.section}>
           <h2>8. Contact</h2>
           <p>
-            📧 Email: <strong>aerondigitaldevelopment@gmail.com</strong>
+            📧 Email: <strong>aerondigitalofficial@gmail.com</strong>
           </p>
         </section>
       </div>

@@ -97,7 +97,7 @@ export default function PrivacyPolicy() {
         <section style={styles.section}>
           <h2>7. Contact Information</h2>
           <p>
-            📧 Email: <strong>aerondigitaldevelopment@gmail.com</strong>
+            📧 Email: <strong>aerondigitalofficial@gmail.com</strong>
           </p>
         </section>
       </div>
