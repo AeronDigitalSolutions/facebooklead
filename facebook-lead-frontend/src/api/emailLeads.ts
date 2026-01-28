@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_BASE } from "@/config/api";
 
-const API_URL = `${API_BASE}/email-leads`;
+const API_URL = `${API_BASE}/api/email-leads`;
 
 /* =========================
    CREATE GROUP + SAVE LEADS
@@ -13,7 +13,7 @@ export const saveEmailLeadsGroup = (
 ) =>
   axios.post(`${API_URL}/groups`, {
     groupName,
-    groupId, // allows saving into existing group
+    groupId,
     leads,
   });
 

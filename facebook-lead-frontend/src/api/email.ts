@@ -1,42 +1,67 @@
 import axios from "axios";
-
 import { API_BASE } from "@/config/api";
-const API_URL = `${API_BASE}/email-leads`;
+
+const API = `${API_BASE}/api/email`;
 
 /* =========================
-   EMAIL CONNECTION
+   MAILBOX CONNECTION
 ========================= */
 
 export const testMailboxConnection = (data: any) =>
-  axios.post(`${API_URL}/mailboxes/test`, data);
+  axios.post(`${API}/mailboxes/test`, data);
 
 export const saveMailbox = (data: any) =>
-  axios.post(`${API_URL}/mailboxes`, data);
+  axios.post(`${API}/mailboxes`, data);
 
 /* =========================
    EMAIL ACCOUNTS LIST
 ========================= */
 
-// Fetch all connected email accounts
 export const fetchMailboxes = () =>
-  axios.get(`${API_URL}/mailboxes`);
+  axios.get(`${API}/mailboxes`);
 
-// Toggle warmup ON / OFF
 export const toggleWarmup = (mailboxId: string) =>
-  axios.patch(`${API_URL}/mailboxes/${mailboxId}/warmup`);
+  axios.patch(`${API}/mailboxes/${mailboxId}/warmup`);
 
-// Delete an email account
 export const deleteMailbox = (mailboxId: string) =>
-  axios.delete(`${API_URL}/mailboxes/${mailboxId}`);
+  axios.delete(`${API}/mailboxes/${mailboxId}`);
 
 /* =========================
-   (NEXT FEATURES - COMING)
+   INBOX
 ========================= */
 
-// Send test email (next step)
-// export const sendTestEmail = (id: string, to: string) =>
-//   axios.post(`${API_URL}/mailboxes/${id}/test-email`);
+export const fetchFolderEmails = (
+  mailboxId: string,
+  folder: string
+) => axios.get(`${API}/inbox/${mailboxId}/${folder}`);
 
-// Health check
-// export const checkMailboxHealth = (id: string) =>
-//   axios.get(`${API_URL}/mailboxes/${id}/health`);
+export const syncFolder = (
+  mailboxId: string,
+  folder: string
+) => axios.post(`${API}/inbox/${mailboxId}/${folder}/sync`);
+
+export const fetchEmailById = (emailId: string) =>
+  axios.get(`${API}/email/${emailId}`);
+
+export const replyToEmail = (emailId: string, body: string) =>
+  axios.post(`${API}/email/${emailId}/reply`, { body });
+
+export const sendNewEmail = (
+  mailboxId: string,
+  to: string,
+  subject: string,
+  body: string
+) =>
+  axios.post(`${API}/email/send`, {
+    mailboxId,
+    to,
+    subject,
+    body,
+  });
+
+/* =========================
+   VERIFY EMAIL
+========================= */
+
+export const verifyEmail = (email: string) =>
+  axios.post(`${API}/verify-email`, { email });
