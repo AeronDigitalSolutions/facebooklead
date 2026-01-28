@@ -26,9 +26,9 @@ export default function MetaAssets() {
     const fetchAssets = async () => {
       try {
         const [pagesRes, adsRes] = await Promise.all([
-          fetch(`${API_BASE}/api/meta/pages`),
-          fetch(`${API_BASE}/api/meta/adaccounts`),
-        ]);
+          fetch(`${API_BASE}/meta/pages`),
+          fetch(`${API_BASE}/meta/adaccounts`),
+        ]);7
 
         if (!pagesRes.ok || !adsRes.ok) {
           throw new Error("Failed to fetch Meta assets");

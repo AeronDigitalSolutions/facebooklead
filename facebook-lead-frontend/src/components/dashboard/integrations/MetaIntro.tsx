@@ -3,7 +3,7 @@ import { API_BASE } from "@/config/api";
 
 export default function MetaIntro() {
   const handleMetaLogin = () => {
-    window.location.href = `${API_BASE}/api/auth/meta/login`;
+    window.location.href = `${API_BASE}/auth/meta/login`;
   };
 
   return (

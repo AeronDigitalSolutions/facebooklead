@@ -12,7 +12,7 @@ export const connectGoogleAds = () => {
 
   // IMPORTANT: direct browser redirect
   window.location.href =
-    `${import.meta.env.VITE_API_URL}/api/google/auth`;
+    `${import.meta.env.VITE_API_URL}/google/auth`;
 };
 
 /* 🔐 FETCH ACCOUNTS */
