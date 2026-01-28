@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_BASE } from "@/config/api";
 
-const API_URL = `${API_BASE}/api/email-leads`;
+const API_URL = `${API_BASE}/email-leads`;
 
 /* =========================
    CREATE GROUP + SAVE LEADS
