@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "../../styles/dashbaord/FormBuilder.module.css";
 import type { CreatedForm } from "../../types/form";
+import { API_BASE } from "@/config/api";
 
 export default function PublicForm() {
   const { formId } = useParams();
@@ -10,9 +11,10 @@ export default function PublicForm() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/forms/${formId}`)
+    fetch(`${API_BASE}/api/forms/${formId}`)
       .then((res) => res.json())
-      .then(setForm);
+      .then(setForm)
+      .catch(console.error);
   }, [formId]);
 
   if (!form) return <p>Loading...</p>;
@@ -33,14 +35,11 @@ export default function PublicForm() {
         value: formData[field.id],
       }));
 
-    await fetch(
-      `http://localhost:5000/api/forms/${form._id}/submit`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers }),
-      }
-    );
+    await fetch(`${API_BASE}/api/forms/${form._id}/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ answers }),
+    });
 
     setSubmitted(true);
   };

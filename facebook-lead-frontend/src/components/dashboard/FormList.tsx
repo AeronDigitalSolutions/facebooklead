@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/dashbaord/FormList.module.css";
+import { API_BASE } from "@/config/api";
 
 export default function Forms() {
   const [forms, setForms] = useState<any[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/forms")
+    fetch(`${API_BASE}/api/forms`)
       .then((res) => res.json())
-      .then(setForms);
+      .then(setForms)
+      .catch(console.error);
   }, []);
 
   const copyIframe = (id: string) => {

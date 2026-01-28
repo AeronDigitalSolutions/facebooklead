@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "../../styles/dashbaord/FormSubmissions.module.css";
+import { API_BASE } from "@/config/api";
 
 export default function FormSubmissions() {
   const { formId } = useParams();
   const [submissions, setSubmissions] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/api/forms/${formId}/submissions`
-    )
+    fetch(`${API_BASE}/api/forms/${formId}/submissions`)
       .then((res) => res.json())
-      .then(setSubmissions);
+      .then(setSubmissions)
+      .catch(console.error);
   }, [formId]);
 
   if (!submissions.length) {

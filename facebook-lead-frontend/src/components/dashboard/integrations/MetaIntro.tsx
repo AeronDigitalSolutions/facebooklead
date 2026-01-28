@@ -1,10 +1,10 @@
 import styles from "../../../styles/dashbaord/metaIntro.module.css";
+import { API_BASE } from "@/config/api";
 
 export default function MetaIntro() {
   const handleMetaLogin = () => {
-  window.location.href = "http://localhost:5000/api/auth/meta/login";
-};
-
+    window.location.href = `${API_BASE}/api/auth/meta/login`;
+  };
 
   return (
     <div className={styles.wrapper}>
