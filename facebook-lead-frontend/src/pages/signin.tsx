@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/signin.module.css";
+import Navbar from "@/components/home/Navbar";
+import Footer from "@/components/home/Footer";
 const API_BASE =
   import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -40,6 +42,7 @@ export default function SigninPage() {
 
   return (
     <>
+    <Navbar/>
       <div className={styles.signinWrapper}>
         <div className={styles.signinCard}>
           <h1>Welcome Back</h1>
@@ -85,6 +88,7 @@ export default function SigninPage() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

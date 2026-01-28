@@ -1,9 +1,18 @@
-import { useNavigate, Outlet } from "react-router-dom";
+import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import styles from "../styles/dashboard.module.css";
+import { FaRegCircleDot } from "react-icons/fa6";
+import { MdDownloadForOffline, MdOutlineBorderClear, MdFormatAlignJustify } from "react-icons/md";
+import { IoPersonSharp } from "react-icons/io5";
+import { AiOutlineForm } from "react-icons/ai";
+import { BiSolidUserAccount } from "react-icons/bi";
+import { SlNotebook } from "react-icons/sl";
+// import { MdKeyboardArrowDown } from "react-icons/md";
+import imgp from '../../src/assets/home/image-1.png'
+
+
 
 export default function Dashboard() {
   const navigate = useNavigate();
-
   return (
     <div className={styles.wrapper}>
       {/* SIDEBAR */}
@@ -11,64 +20,113 @@ export default function Dashboard() {
         <div className={styles.logo}>LeadFlow</div>
 
         <nav className={styles.menu}>
-          <div className={styles.item} onClick={() => navigate("/dashboard")}>
-            Dashboard
-          </div>
+          {/* <NavLink
+            to="/dashboard"
+           
+          >
+            <FaRegCircleDot /> Dashboard
+          </NavLink> */}
 
-          <div className={styles.item} onClick={() => navigate("/dashboard/add-accounts")}>
-            Add Accounts
-          </div>
+          <div className={styles.item} 
+          onClick={() => navigate("/dashboard")}> 
+          <FaRegCircleDot style={{ color: '#9ca3af' }} /> Dashboard </div>
 
-          <div className={styles.section}>Ad Accounts</div>
 
-          <div className={styles.item} onClick={() => navigate("/dashboard/campaigns")}>
-            Campaigns
-          </div>
+          <NavLink
+            to="/dashboard/add-accounts"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            <MdDownloadForOffline /> Add Accounts
+          </NavLink>
 
-          <div className={styles.item} onClick={() => navigate("/dashboard/leads")}>
-            Leads
-          </div>
+          <NavLink
+            to="/dashboard/leads"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            <IoPersonSharp /> Leads
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/campaigns"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            <MdOutlineBorderClear /> Campaigns
+          </NavLink>
 
           <div className={styles.section}>Forms</div>
 
-          <div className={styles.item} onClick={() => navigate("/dashboard/form")}>
-            Form Builder
-          </div>
+          <NavLink
+            to="/dashboard/form"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            <AiOutlineForm /> Form Builder
+          </NavLink>
 
-          <div className={styles.item} onClick={() => navigate("/dashboard/forms")}>
-            Form List
-          </div>
+          <NavLink
+            to="/dashboard/forms"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            <MdFormatAlignJustify /> Form List
+          </NavLink>
 
-<div className={styles.section}>Google Ads</div>
+          <div className={styles.section}>Google Ads</div>
 
-<div
-  className={styles.item}
-  onClick={() => navigate("/dashboard/google/accounts")}
->
-  Google Accounts
-</div>
+          <NavLink
+            to="/dashboard/google/accounts"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            <BiSolidUserAccount /> Google Accounts
+          </NavLink>
 
-<div
-  className={styles.item}
-  onClick={() => navigate("/dashboard/google/campaigns")}
->
-  Google Campaigns
-</div>
+          <NavLink
+            to="/dashboard/google/campaigns"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            <SlNotebook /> Google Campaigns
+          </NavLink>
 
-<div
-  className={styles.item}
-  onClick={() => navigate("/dashboard/google/leads")}
->
-  Google Leads
-</div>
+          <NavLink
+            to="/dashboard/google/leads"
+            className={({ isActive }) =>
+              `${styles.item} ${isActive ? styles.active : ""}`
+            }
+          >
+            Google Leads
+          </NavLink>
 
 
+            <div className={styles.userBox}>
+      <img
+        src={imgp}
+        alt="user"
+        className={styles.avatar}
+      />
 
+      <div className={styles.userInfo}>
+        <span className={styles.userName}>John Doe</span>
+        <span className={styles.userEmail}>john@leadflow.io</span>
+      </div>
 
+      {/* <MdKeyboardArrowDown className={styles.arrow} /> */}
+    </div>
         </nav>
       </aside>
 
-      {/* 🔥 THIS IS WHERE CHILD ROUTES RENDER */}
+      {/* CONTENT */}
       <main className={styles.content}>
         <Outlet />
       </main>
