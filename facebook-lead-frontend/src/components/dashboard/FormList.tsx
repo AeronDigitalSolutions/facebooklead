@@ -8,7 +8,7 @@ export default function Forms() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/forms`)
+    fetch(`${API_BASE}/forms`)
       .then((res) => res.json())
       .then(setForms)
       .catch(console.error);

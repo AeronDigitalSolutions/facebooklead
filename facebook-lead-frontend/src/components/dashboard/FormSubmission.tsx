@@ -8,7 +8,7 @@ export default function FormSubmissions() {
   const [submissions, setSubmissions] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/forms/${formId}/submissions`)
+    fetch(`${API_BASE}/forms/${formId}/submissions`)
       .then((res) => res.json())
       .then(setSubmissions)
       .catch(console.error);
