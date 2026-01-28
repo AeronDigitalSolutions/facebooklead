@@ -139,6 +139,9 @@
   .testimonial-card {
     padding: 28px 22px;
   }
+  .slick-slide{
+    width: 100% !important;
+  }
 }
 
 

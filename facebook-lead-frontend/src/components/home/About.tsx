@@ -19,7 +19,6 @@ const About: React.FC = () => {
     <section className="about">
       <div className="about-container">
 
-        {/* LEFT IMAGE */}
         <div
           className="about-image"
           data-aos="fade-right"
@@ -33,7 +32,7 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* RIGHT CONTENT */}
+       
         <div
           className="about-content"
           data-aos="fade-left"
@@ -56,15 +55,15 @@ const About: React.FC = () => {
             Lorem ipsum dolor sit amet consectetur adipiscing vitae mattis tellus.
           </p>
 
-          {/* FOOTER */}
+          
           <div className="about-footer">
             <button className="btn-primary">Know more</button>
 
-            <div className="rating">
+            <div  className="rating">
               <span className="score">4.7</span>
-              <div className="stars">
+              <div className="stars" style={{marginBottom:'0px'}}>
                 <IoStar /><IoStar /><IoStar /><IoStar />
-                <p>Customer rating</p>
+                <p style={{marginBottom:'0px'}}>Customer rating</p>
               </div>
             </div>
           </div>

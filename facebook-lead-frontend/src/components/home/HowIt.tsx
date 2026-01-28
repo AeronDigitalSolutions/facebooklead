@@ -8,7 +8,7 @@ const HowIt = () => {
 
       <div className="orbit-wrapper">
 
-        {/* STEP 1 */}
+       
         <div className="step-card step-1">
           <span className="step-badge">Step 01</span>
           <h4>Algorithm processing</h4>
@@ -17,7 +17,7 @@ const HowIt = () => {
           </p>
         </div>
 
-        {/* STEP 2 */}
+        
         <div className="step-card step-2">
           <span className="step-badge">Step 02</span>
           <h4>Input & data gathering</h4>
@@ -26,7 +26,7 @@ const HowIt = () => {
           </p>
         </div>
 
-        {/* STEP 3 */}
+        
         <div className="step-card step-3">
           <span className="step-badge">Step 03</span>
           <h4>Content generation & refinement</h4>
@@ -35,7 +35,7 @@ const HowIt = () => {
           </p>
         </div>
 
-        {/* CIRCLE */}
+        
         <div className="solar">
           <i className="neptune"></i>
 

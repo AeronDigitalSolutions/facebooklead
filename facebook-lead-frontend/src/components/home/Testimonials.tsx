@@ -58,7 +58,7 @@ const settings = {
   return (
     <>
   <section className="testimonials">
-      {/* Heading */}
+     
       <span className="testimonials-tag">TESTIMONIALS</span>
 
       <h2 className="testimonials-title">

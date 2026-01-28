@@ -28,8 +28,8 @@ const Services = () => {
 
       <div className="services-grid">
 
-        <div className="service-card" data-aos="fade-left"
-     data-aos-anchor-placement="center-bottom">
+        <div className="service-card" data-aos="fade-up"
+     data-aos-anchor-placement="bottom-center">
           <div className="icon"><PiSpeakerSimpleHighBold /></div>
           <h3>Digital marketers</h3>
           <p>
@@ -45,7 +45,7 @@ const Services = () => {
 
        
         <div className="service-card" data-aos="fade-up"
-     data-aos-anchor-placement="center-bottom">
+     data-aos-anchor-placement="bottom-center">
           <div className="icon"><RiNewspaperLine /></div>
           <h3>Content marketers</h3>
           <p>
@@ -61,8 +61,8 @@ const Services = () => {
 
 
        
-        <div className="service-card"data-aos="fade-right"
-     data-aos-anchor-placement="center-bottom">
+        <div className="service-card"data-aos="fade-up"
+     data-aos-anchor-placement="bottom-center">
           <div className="icon"><FaRegLightbulb /></div>
           <h3>Founders</h3>
           <p>
@@ -77,8 +77,8 @@ const Services = () => {
         </div>
 
           
-        <div className="service-card" data-aos="fade-right"
-     data-aos-anchor-placement="center-bottom">
+        <div className="service-card" data-aos="fade-up"
+     data-aos-anchor-placement="bottom-center">
           <div className="icon"><FaPaintRoller /></div>
           <h3>Copy writer</h3>
           <p>
@@ -95,7 +95,7 @@ const Services = () => {
 
           
         <div className="service-card" data-aos="fade-up"
-     data-aos-anchor-placement="center-bottom">
+     data-aos-anchor-placement="bottom-center">
           <div className="icon"><MdRecordVoiceOver /></div>
           <h3>SEO pecialists</h3>
           <p>
@@ -110,8 +110,8 @@ const Services = () => {
         </div>
 
            
-        <div className="service-card" style={{background:'#540fafff'}} data-aos="fade-left"
-     data-aos-anchor-placement="center-bottom">
+        <div className="service-card" style={{background:'#540fafff'}} data-aos="fade-up"
+     data-aos-anchor-placement="bottom-center">
           <div className="icon"><FaSdCard /></div>
           <h3>More Services</h3>
           <p>
