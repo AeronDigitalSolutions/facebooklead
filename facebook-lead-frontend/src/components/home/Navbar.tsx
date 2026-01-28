@@ -71,15 +71,15 @@ export default function Navbar() {
           <HiX />
         </button>
 
-        <a href="#">Home</a>
-        <a href="#">About</a>
+        <Link to='/'>Home</Link>
+        <Link to='/aboutpage' >About</Link>
         <a href="#">Pricing</a>
         <a href="#">Services</a>
         <a href="#">Blog</a>
-        <a href="#">Contact</a>
+        <Link to='/contact'>Contact</Link>
 
         <div className="mobile-actions">
-          <button  className="login-btn">Login</button>
+          <Link to='/signin'  className="login-btn">Login</Link>
           <button className="join-btn">Join now</button>
         </div>
       </div>

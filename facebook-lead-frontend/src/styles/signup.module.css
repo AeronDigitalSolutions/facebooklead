@@ -3,17 +3,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  background: #2a2b2b;
+  /* background: linear-gradient(135deg, #eef2ff, #f8fafc); */
   padding: 20px;
 }
 
 .signupCard {
   width: 100%;
   max-width: 420px;
-  background: #ffffff;
+  /* background: #ffffff; */
+  background: rgb(36, 36, 36);
   padding: 36px;
   border-radius: 14px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08); */
   animation: fadeIn 0.5s ease;
 }
 
@@ -21,13 +23,15 @@
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 6px;
-  color: #111827;
+  color: #fff;
+  text-align: center;
 }
 
 .subtitle {
   font-size: 14px;
-  color: #6b7280;
+  color: #707070;
   margin-bottom: 24px;
+  text-align: center;
 }
 
 .error {
@@ -48,8 +52,31 @@
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #374151;
+  /* color: #374151; */
+  color: #c9baba;
 }
+
+
+.inputGroup input {
+  background-color: transparent; 
+  color:#f2f4f8;
+}
+.inputGroup input:focus {
+  background-color: transparent !important;
+}
+
+
+.inputGroup input:-webkit-autofill,
+.inputGroup input:-webkit-autofill:hover,
+.inputGroup input:-webkit-autofill:focus,
+.inputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
 
 .inputGroup input {
   width: 100%;
@@ -69,7 +96,8 @@
 .signupCard button {
   width: 100%;
   padding: 13px;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  background: rgb(118, 31, 227);
+  /* background: linear-gradient(135deg, #6366f1, #4f46e5); */
   border: none;
   border-radius: 10px;
   font-size: 15px;
@@ -82,7 +110,7 @@
 
 .signupCard button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 25px rgba(79, 70, 229, 0.35);
+  box-shadow: 3 12px 25px rgba(79, 70, 229, 0.35);
 }
 
 .signupCard button:disabled {
@@ -94,11 +122,12 @@
   margin-top: 22px;
   text-align: center;
   font-size: 13px;
-  color: #6b7280;
+font-weight:500;
+  color: #a3a3a3;
 }
 
 .footerText span {
-  color: #4f46e5;
+  color: rgb(118, 31, 227);;
   font-weight: 600;
   cursor: pointer;
 }
