@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_BASE } from "@/config/api";
 
-const API = "http://localhost:5000/api/email";
+const API = `${API_BASE}/api/email`;
 
 export const fetchFolderEmails = (
   mailboxId: string,
@@ -17,6 +18,7 @@ export const fetchEmailById = (emailId: string) =>
 
 export const replyToEmail = (emailId: string, body: string) =>
   axios.post(`${API}/email/${emailId}/reply`, { body });
+
 export const sendNewEmail = (
   mailboxId: string,
   to: string,

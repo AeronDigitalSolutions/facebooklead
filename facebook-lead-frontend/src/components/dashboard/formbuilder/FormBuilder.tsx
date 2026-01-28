@@ -6,6 +6,7 @@ import type {
   FieldType,
   FormTheme,
 } from "../../../types/form";
+import { API_BASE } from "@/config/api";
 
 const defaultTheme: FormTheme = {
   textColor: "#111827",
@@ -55,7 +56,7 @@ export default function FormBuilder() {
   const createForm = async () => {
     if (!formName || fields.length === 0) return;
 
-    const res = await fetch("http://localhost:5000/api/forms", {
+    const res = await fetch(`${API_BASE}/forms`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

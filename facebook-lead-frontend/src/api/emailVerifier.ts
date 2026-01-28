@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_BASE } from "@/config/api";
 
-const API = "http://localhost:5000/api/email";
+const API = `${API_BASE}/api/email`;
 
 export const verifyEmail = (email: string) =>
   axios.post(`${API}/verify-email`, { email });

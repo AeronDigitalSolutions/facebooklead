@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../../styles/dashbaord/metaAssets.module.css";
+import { API_BASE } from "@/config/api";
 
 interface MetaItem {
   id: string;
@@ -25,8 +26,8 @@ export default function MetaAssets() {
     const fetchAssets = async () => {
       try {
         const [pagesRes, adsRes] = await Promise.all([
-          fetch("http://localhost:5000/api/meta/pages"),
-          fetch("http://localhost:5000/api/meta/adaccounts"),
+          fetch(`${API_BASE}/api/meta/pages`),
+          fetch(`${API_BASE}/api/meta/adaccounts`),
         ]);
 
         if (!pagesRes.ok || !adsRes.ok) {
@@ -109,7 +110,9 @@ export default function MetaAssets() {
             <input
               type="checkbox"
               checked={selectedPages.some((sp) => sp.id === p.id)}
-              onChange={() => toggleItem(p, selectedPages, setSelectedPages)}
+              onChange={() =>
+                toggleItem(p, selectedPages, setSelectedPages)
+              }
             />
             <span>{p.name}</span>
           </label>
@@ -132,7 +135,9 @@ export default function MetaAssets() {
             <input
               type="checkbox"
               checked={selectedAds.some((sa) => sa.id === a.id)}
-              onChange={() => toggleItem(a, selectedAds, setSelectedAds)}
+              onChange={() =>
+                toggleItem(a, selectedAds, setSelectedAds)
+              }
             />
             <span>{a.name || a.id}</span>
           </label>
@@ -140,7 +145,11 @@ export default function MetaAssets() {
       </section>
 
       <div className={styles.actions}>
-        <button type="button" disabled={!isValid} onClick={handleContinue}>
+        <button
+          type="button"
+          disabled={!isValid}
+          onClick={handleContinue}
+        >
           Continue
         </button>
       </div>
