@@ -16,7 +16,7 @@ export default function Navbar() {
       
       <nav className="nav-menu desktop">
         <Link to='/' className="nav-item">
-          Home <span className="plus">×</span>
+          Home <span className="plus"></span>
           <div className="dropdown">
             <a href="#">HomePage 01</a>
             <a href="#">HomePage 02</a>
@@ -38,7 +38,7 @@ export default function Navbar() {
         <Link to='/aboutpage' className="nav-item" >About</Link>
 
         <div className="nav-item">
-          Pages <span className="plus">+</span>
+          Pages <span className="plus"></span>
           <div className="dropdown">
             <a href="#">Pricing</a>
             <a href="#">FAQ</a>
@@ -47,7 +47,7 @@ export default function Navbar() {
         </div>
 
         <div className="nav-item">
-          Services <span className="plus">+</span>
+          Services <span className="plus"></span>
           <div className="dropdown">
             <a href="#">Services</a>
             <a href="#">Service Details</a>

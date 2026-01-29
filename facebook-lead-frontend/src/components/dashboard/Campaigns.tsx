@@ -4,6 +4,9 @@ import { fetchCampaigns, syncCampaigns } from "../../api/campaigns";
 import type { Campaign } from "@/types/campaign";
 import CampaignTable from "@/components/dashboard/campaigns/CampaignTable";
 import AdAccountSelector from "@/components/dashboard/accounts/AdAccountSelector";
+import search from "../../assets/home/search.png"
+import { IoIosSync } from "react-icons/io";
+
 
 interface AdAccount {
   id: string; // act_XXXX
@@ -87,9 +90,44 @@ export default function Campaigns() {
         </div>
 
         <button className={styles.syncBtn} onClick={handleSync}>
-          Sync Campaigns
+          Sync Facebook Ads Accounts
         </button>
       </div>
+<div className={styles.boxCampaign1}>
+<div className={styles.boxCampaign}>
+  <div className={styles.leftCampaign}>
+    <div className={styles.sync_title}>
+<span className={styles.sync_icon}><IoIosSync /></span>
+<span>Sync Facebook Ad Accounts</span>
+</div>
+<h2 className={styles.sync_heading}>No ad accounts found</h2>
+<p className={styles.sync_text}>
+Sync your Facebook ad accounts to manage<br></br> your campaigns here.
+</p>
+<button className={styles.sync_button}><IoIosSync /> Sync Campaigns</button>
+    </div>
+
+
+
+    <div className={styles.sync_right}>
+      <img src={search} alt="search"/>
+    </div>
+    </div>
+
+
+    <div className={styles.viewAcount}>
+      <div className={styles.para_view}>
+        <p>To view and manage your campaigns, sync your Facebook ad accounts.</p>
+      </div>
+
+      <div className={styles.icon_campaign}>
+        <p><IoIosSync/></p>
+      </div>
+    </div>
+</div>
+
+
+
 
       {/* 🔹 AD ACCOUNT SELECTOR */}
       <AdAccountSelector onChange={setSelectedAccount} />

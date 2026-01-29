@@ -1,13 +1,14 @@
 import styles from "../../../styles/dashbaord/campaigns.module.css";
 import type { Campaign } from "@/types/campaign";
 import CampaignRow from "./CampaignRow";
-
+import { IoIosSync } from "react-icons/io";
 interface Props {
   campaigns: Campaign[];
 }
 
 export default function CampaignTable({ campaigns }: Props) {
   return (
+    <>
     <table className={styles.table}>
       <thead>
         <tr>
@@ -33,7 +34,13 @@ export default function CampaignTable({ campaigns }: Props) {
             />
           ))
         )}
+      
       </tbody>
+      
     </table>
+      <div className={styles.campaign_button_center}>
+        <button className={styles.campaign_button}><IoIosSync /> Sync Campaigns</button>
+</div>
+</>
   );
 }
