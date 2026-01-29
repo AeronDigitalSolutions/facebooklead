@@ -1,4 +1,5 @@
 import styles from "../../../styles/dashbaord/metaIntro.module.css";
+import { RiMetaFill } from "react-icons/ri";
 
 export default function MetaIntro() {
   const handleMetaLogin = () => {
@@ -8,57 +9,104 @@ export default function MetaIntro() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div className={styles.container_Intro}>
         {/* HEADER */}
+        <div className={styles.meta_display_top}>
         <h1>Connect your Meta Business</h1>
+        <p className={styles.Officlasy}>Use Officlasy Meta AI</p>
+        </div>
         <p className={styles.subtitle}>
-          You’re about to securely connect your Facebook & Instagram business
-          assets with LeadFlow.
+         Securely connect Facebook & Instagram to LeadFlow:
         </p>
 
         {/* STEPS */}
-        <div className={styles.steps}>
-          <div className={styles.step}>
-            <span>1</span>
-            <p>Login using your Meta account</p>
-          </div>
+      
+<div className={styles.stepWrapper}>
+    <div className={`${styles.line} ${styles.completedLines}`} />
+      {/* Step 1 */}
+      <div className={styles.stepBlock}>
+        <div className={`${styles.circle} ${styles.completed}`}>✓</div>
+        <p className={styles.label}>Login</p>
+      </div>
 
-          <div className={styles.step}>
-            <span>2</span>
-            <p>Grant access to business assets</p>
-          </div>
+      <div className={`${styles.line} ${styles.completedLine}`} />
 
-          <div className={styles.step}>
-            <span>3</span>
-            <p>Select pages & ad accounts</p>
-          </div>
-        </div>
+      {/* Step 2 */}
+      <div className={styles.stepBlock}>
+        <div className={`${styles.circle} ${styles.active}`}>2</div>
+        <p className={`${styles.label} ${styles.activeLabel}`}>
+          Permissions
+        </p>
+      </div>
+
+      <div className={styles.line} />
+
+      {/* Step 3 */}
+      <div className={styles.stepBlock}>
+        <div className={styles.circle}>3</div>
+        <p className={styles.label}>Select Assets</p>
+      </div>
+    </div>
 
         {/* PERMISSIONS */}
-        <div className={styles.permissions}>
-          <h3>Permissions we request</h3>
+       
+ <div className={styles.permissions_display}>
+          <div className={styles.permissionsCard}>
+            <h3>We WILL access</h3>
 
-          <ul>
-            <li>✔ View & manage Facebook Pages</li>
-            <li>✔ Access Instagram Business account</li>
-            <li>✔ Read leads & messages</li>
-            <li>✔ Manage ad accounts</li>
-          </ul>
+            <div className={styles.permissionItem}>
+              <span className={styles.check}>✓</span>
+              Facebook Pages
+            </div>
+
+            <div className={styles.permissionItem}>
+              <span className={styles.check}>✓</span>
+              Instagram Business Account
+            </div>
+
+            <div className={styles.permissionItem}>
+              <span className={styles.check}>✓</span>
+              Ad Accounts
+            </div>
+
+            <div className={styles.permissionItem}>
+              <span className={styles.check}>✓</span>
+              Lead Forms & Messages
+            </div>
+          </div>
+
+          <div className={styles.permissionsCard}>
+            <h3>We will NEVER access</h3>
+
+            <div className={styles.permissionItem}>
+              <span className={styles.cross}>✕</span>
+              Personal messages
+            </div>
+
+            <div className={styles.permissionItem}>
+              <span className={styles.cross}>✕</span>
+              Personal posts
+            </div>
+
+            <div className={styles.permissionItem}>
+              <span className={styles.cross}>✕</span>
+              Private data
+            </div>
+          </div>
         </div>
 
         {/* DISCLAIMER */}
         <div className={styles.notice}>
-          <strong>Important:</strong> We never post, message, or run ads without
-          your approval. You stay in full control.
+          <strong>You stay in Control:</strong> Lead flow necer post,message or runs  ads without your approval
         </div>
 
         {/* ACTION */}
         <button className={styles.metaBtn} onClick={handleMetaLogin}>
-          Continue to Meta Login
+         <RiMetaFill /> Continue to Meta Login
         </button>
 
         <p className={styles.footerNote}>
-          You can revoke access anytime from Meta or LeadFlow settings.
+          You can disconnect anytime form settings.
         </p>
       </div>
     </div>

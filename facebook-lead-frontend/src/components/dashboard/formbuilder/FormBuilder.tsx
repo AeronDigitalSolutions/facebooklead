@@ -14,6 +14,8 @@ const defaultTheme: FormTheme = {
 };
 
 export default function FormBuilder() {
+const [tab, setTab] = useState<"field" | "theme">("field");
+
   const [formName, setFormName] = useState("");
   const [fields, setFields] = useState<Field[]>([]);
   const [activeFieldId, setActiveFieldId] = useState<string | null>(null);
@@ -121,6 +123,7 @@ export default function FormBuilder() {
 
   return (
     <div className={styles.wrapper}>
+      <h1 className={styles.form_h1}>Form Bulider</h1>
       <div className={styles.topBar}>
         <input
           placeholder="Form name"
@@ -146,9 +149,8 @@ export default function FormBuilder() {
           {fields.map((field) => (
             <div
               key={field.id}
-              className={`${styles.field} ${
-                activeFieldId === field.id ? styles.active : ""
-              }`}
+              className={`${styles.field} ${activeFieldId === field.id ? styles.active : ""
+                }`}
               onClick={() => setActiveFieldId(field.id)}
             >
               <label style={{ color: theme.textColor }}>
@@ -159,8 +161,11 @@ export default function FormBuilder() {
           ))}
         </main>
 
-        <aside className={styles.settings}>
-          <h4>Field Settings</h4>
+        {/* <aside className={styles.settings}>
+          
+          <h4 >Field Settings</h4>
+          <input type="text" placeholder="Filed Label" />
+          <input type="text" placeholder="Filed Label" />
 
           {activeField && (
             <>
@@ -174,19 +179,19 @@ export default function FormBuilder() {
 
               {(activeField.type === "select" ||
                 activeField.type === "radio") && (
-                <>
-                  <label>Options (comma separated)</label>
-                  <input
-                    value={activeField.options?.join(",")}
-                    onChange={(e) =>
-                      updateField(
-                        "options",
-                        e.target.value.split(",")
-                      )
-                    }
-                  />
-                </>
-              )}
+                  <>
+                    <label>Options (comma separated)</label>
+                    <input
+                      value={activeField.options?.join(",")}
+                      onChange={(e) =>
+                        updateField(
+                          "options",
+                          e.target.value.split(",")
+                        )
+                      }
+                    />
+                  </>
+                )}
             </>
           )}
 
@@ -215,10 +220,77 @@ export default function FormBuilder() {
               setTheme({ ...theme, buttonColor: e.target.value })
             }
           />
-        </aside>
+        </aside> */}
+        <aside className={styles.settings}>
+  <div className={styles.tabs}>
+    <button onClick={() => setTab("field")} className={tab==="field"?styles.active:""}>Field</button>
+    <button onClick={() => setTab("theme")} className={tab==="theme"?styles.active:""}>Theme</button>
+  </div>
+
+  {/* {tab === "field" && activeField && (
+    <>
+      <input
+        value={activeField.label}
+        onChange={(e)=>updateField("label", e.target.value)}
+      />
+
+      {(activeField.type==="select"||activeField.type==="radio") && (
+        <input
+          value={activeField.options?.join(",")}
+          onChange={(e)=>updateField("options", e.target.value.split(","))}
+        />
+      )}
+    </>
+  )} */}
+{tab === "field" && (
+  <>
+    <h4>Field Settings</h4>
+
+    {/* <label>Field Label</label> */}
+    <input
+      value={activeField?.label || ""}
+      onChange={(e)=>updateField("label", e.target.value)} placeholder="Field label"
+    />
+
+    {/* <label>Placeholder</label> */}
+    <input
+      value={activeField?.placeholder || ""}
+      onChange={(e)=>updateField("placeholder", e.target.value)} placeholder="Planceholder"
+    />
+
+    <div className={styles.toggle}>
+      <span>Required?</span>
+      {/* <input
+        type="checkbox"
+        checked={activeField?.required}
+        onChange={(e)=>updateField("required", e.target.checked)}
+      /> */}
+      
+<label className={styles.switch}>
+  <input type="checkbox"/>
+  <span className={styles.slider}></span>
+</label>
+    </div>
+
+    {/* <p className={styles.tip}>Tip: Drag and drop fields to reorder.</p> */}
+  </>
+)}
+
+  {tab === "theme" && (
+    <>
+      <input type="color" value={theme.textColor}
+        onChange={(e)=>setTheme({...theme,textColor:e.target.value})}/>
+      <input type="color" value={theme.borderColor}
+        onChange={(e)=>setTheme({...theme,borderColor:e.target.value})}/>
+      <input type="color" value={theme.buttonColor}
+        onChange={(e)=>setTheme({...theme,buttonColor:e.target.value})}/>
+    </>
+  )}
+</aside>
+
       </div>
 
-      <div className={styles.output}>
+      {/* <div className={styles.output}>
         <h2>Created Forms</h2>
 
         {createdForms.map((form) => (
@@ -230,7 +302,7 @@ export default function FormBuilder() {
             />
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -105,7 +105,7 @@ export default function AddAccounts() {
         <p className={styles.add_bottom}>
            <FaMessage style={{color:'grey'}} /> <span>NEED HELP ?</span>Contact Our Support if you need any assitance 
         </p>
-        <div className={styles.support}>Contact Support <MdKeyboardArrowRight /></div>
+        <button className={styles.support}>Contact Support <MdKeyboardArrowRight /></button>
        </p>
     </div>
   );

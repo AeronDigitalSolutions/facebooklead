@@ -9,14 +9,208 @@
   margin-bottom: 20px;
 }
 
+.header h1{
+       font-size: 33px;
+    font-weight: 600;
+    font-family: Inter, sans-serif;
+}
+.header p{
+  margin-top: 6px;
+    font-size: 17px;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
 .syncBtn {
-  background: #1877f2;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
+  font-size: 18px;
+  display: inline-block;
+  text-align: center;
   font-weight: 500;
+  padding:14px 16px;
+  border: 3px solid #1877f2;
+  border-radius: 6px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  background-color: #1877f2;
+}
+
+.syncBtn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #fff;
+  z-index: -1;
+}
+
+.syncBtn:hover, .syncBtn:focus {
+  color: #1877f2;
+}
+
+.syncBtn:hover:before, .syncBtn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.syncBtn:active {
+  transform: scale(0.9);
+}
+
+
+.boxCampaign1{
+  background: #ffffff;
+  min-height: 68vh;
+
+}
+.boxCampaign{
+display: flex;
+padding: 30px 20px;
+align-items: center;
+justify-content: space-between;
+/* background: #ffffff; */
+padding-bottom: 0px;
+/* min-height: 100%; */
+font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.leftCampaign{
+padding: 20px;
+}
+.sync_title{
+  display: flex;
+   margin-top: 6px;
+    font-size: 17px;
+    align-items: center;
+    color: #000;
+    margin-bottom: 40px;
+}
+.sync_heading{
+font-size: 33px;
+    font-weight: 600;
+    font-family: Inter, sans-serif;
+    text-transform: capitalize;
+    margin-bottom: 10px; 
+  }
+
+
+  /* From Uiverse.io by adamgiebl */ 
+.sync_button
+ {
+  font-size: 18px;
+  /* letter-spacing: 2px; */
+  /* text-transform: uppercase; */
+  display: inline-block;
+ background: #6c63ff;
+color: #ffffff;
+border: none;
+padding: 15px 20px;
+border-radius: 8px;
+font-size: 17px;
+display: flex;
+align-items: center;
+gap: 7px;
+font-weight: 400;
+cursor: pointer;
+  padding: 15px 20px;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+.sync_button:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #fff;
+  z-index: -1;
+  border: 3px solid #6c63ff;
+}
+
+.sync_button:hover, .sync_button:focus {
+  color: #000;
+}
+
+.sync_button:hover:before, .sync_button:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.sync_button:active {
+  transform: scale(0.9);
+}
+
+/* .sync_button {
+background: #6c63ff;
+color: #ffffff;
+border: none;
+padding: 15px 20px;
+border-radius: 8px;
+font-size: 17px;
+display: flex;
+align-items: center;
+gap: 7px;
+font-weight: 400;
+cursor: pointer;
+}
+
+
+.sync-button:hover {
+background: #5a52e6;
+} */
+  .sync_text{
+    margin-top: 6px;
+    font-size: 16px;
+    line-height: 1.4rem;
+    color: #6b7280;
+    margin-bottom: 30px;
+  }
+
+  .sync_right {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.sync_right img{
+  width: 220px
+  ;height: auto;
+}
+
+
+.viewAcount{
+  padding: 10px 30px;
+  background-color: #e4e5e7;
+  display: flex;
+  margin: 19px 30px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+
+  
+}
+.para_view{
+  font-size: 14px;
+}
+.icon_campaign{
+  font-size: 20px;
+  color: #000;
 }
 
 .table {
@@ -32,6 +226,7 @@
   padding: 14px 16px;
   border-bottom: 1px solid #eee;
   text-align: left;
+  /* text-align: center; */
 }
 
 .meta {
@@ -65,4 +260,27 @@
   text-align: center;
   padding: 30px;
   color: #888;
+}
+.campaign_button {
+background: #6c63ff;
+color: #ffffff;
+border: none;
+margin-top: 20px;
+padding: 15px 20px;
+border-radius: 8px;
+font-size: 17px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 7px;
+font-weight: 400;
+cursor: pointer;
+}
+.campaign_button_center{
+  display: flex;
+  justify-content: center;
+}
+
+.campaign_button:hover {
+background: #5a52e6;
 }

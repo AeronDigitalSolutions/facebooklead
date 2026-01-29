@@ -7,7 +7,7 @@ import { AiOutlineForm } from "react-icons/ai";
 import { BiSolidUserAccount } from "react-icons/bi";
 import { SlNotebook } from "react-icons/sl";
 // import { MdKeyboardArrowDown } from "react-icons/md";
-import imgp from '../../src/assets/home/image-1.png'
+// import imgp from '../../src/assets/home/image-1.png'
 
 
 
@@ -109,20 +109,6 @@ export default function Dashboard() {
           </NavLink>
 
 
-            <div className={styles.userBox}>
-      <img
-        src={imgp}
-        alt="user"
-        className={styles.avatar}
-      />
-
-      <div className={styles.userInfo}>
-        <span className={styles.userName}>John Doe</span>
-        <span className={styles.userEmail}>john@leadflow.io</span>
-      </div>
-
-      {/* <MdKeyboardArrowDown className={styles.arrow} /> */}
-    </div>
         </nav>
       </aside>
 
